@@ -1,0 +1,99 @@
+/* components/Footer.css */
+
+.footer-container {
+  background-color: #f0f4f8; /* A light, slightly blueish gray background */
+  color: #333;
+  padding-top: 4rem;
+}
+
+.footer-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 1px solid #d1d5db; /* Separator line */
+  padding-bottom: 3rem;
+}
+
+/* Left: Logo */
+.footer-logo {
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+/* Middle: Sitemap with multiple columns */
+.footer-sitemap {
+  display: flex;
+  gap: 3rem;
+  flex-grow: 1; /* Allow sitemap to take available space */
+  padding-left: 4rem;
+}
+
+/* --- THIS IS THE MODIFIED PART --- */
+.link-group-title {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111827;
+  text-decoration: none; /* Add this line to remove the default underline */
+  display: inline-block; /* Good practice for link containers */
+  transition: color 0.2s ease; /* Add transition for a smooth hover effect */
+}
+
+.link-group-title:hover {
+    color: #1d4ed8; /* Add a hover effect, same as other links */
+}
+/* --- END OF MODIFIED PART --- */
+
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #4b5563;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #1d4ed8; /* Brand blue on hover */
+  text-decoration: underline;
+}
+
+/* Right: Standalone links */
+.footer-standalone-links {
+  flex-shrink: 0;
+}
+
+.footer-standalone-links .footer-link.bold {
+  font-weight: 600;
+  color: #111827; /* Make these links darker and bolder */
+}
+
+/* Bottom: Address and Copyright */
+.footer-bottom {
+  background-color: #1f2937; /* Dark background for copyright */
+  color: #d1d5db; /* Light gray text */
+  text-align: center;
+  padding: 1.5rem 2rem;
+  font-size: 0.875rem;
+}
+
+.footer-address {
+  background-color: #f0f4f8; /* Match the main background */
+  color: #4b5563;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.footer-copyright {
+  margin: 0;
+}

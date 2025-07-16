@@ -1,0 +1,68 @@
+.aboutSection {
+  background-color: #1d4ed8; /* Brand Dark Blue */
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  font-weight: 300;
+  margin-bottom: 4rem;
+  opacity: 0.9;
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.linkBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.linkBox:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px); /* Slight lift effect */
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.boxTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.boxDescription {
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .linksGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,61 @@
+/* The main container for the section */
+.bannerSection {
+  position: relative; /* Needed for positioning child elements */
+  padding-bottom: 5rem; /* Space at the bottom */
+}
+
+/* The blue shape at the top */
+.blueTopBg {
+  background-color: #1d4ed8; /* Brand Blue */
+  height: 150px; /* Adjust height of the blue area */
+}
+
+/* The white floating card */
+.contentBox {
+  background-color: white;
+  max-width: 800px; /* Adjust width of the card */
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 2.5rem 2rem;
+  position: relative;
+  z-index: 1;
+
+  /* This is the key to the overlapping effect */
+  margin-top: -75px; /* Pull the card up by half the height of the blue area */
+}
+
+/* The main link style */
+.contactLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: #1d4ed8; /* Brand Blue for the text */
+  font-size: 1.75rem;
+  font-weight: 700;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.contactLink:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  color: #2563eb; /* A slightly lighter blue on hover */
+}
+
+.icon {
+  font-size: 2rem; /* Make the envelope icon a bit larger */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contentBox {
+    padding: 2rem 1.5rem;
+  }
+  .contactLink {
+    font-size: 1.25rem;
+  }
+  .icon {
+    font-size: 1.5rem;
+  }
+}
