@@ -4,11 +4,42 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FiAlignJustify, FiX } from 'react-icons/fi';
+import { FiAlignJustify, FiChevronDown, FiChevronUp, FiX } from 'react-icons/fi';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher';
 import { useMessage } from '@/lib/useMessage';
 import './Header.css';
-import { useScreenSizeStore } from '@/store/useScreenSizeStore';
+
+// 1. 定义新的数据和类型
+type NavLink = {
+  label: string;
+  path: string;
+  children?: NavLink[];
+};
+
+const navData: NavLink[] = [
+  { label: 'TOP', path: '/Pg100' },
+  {
+    label: '事業内容',
+    path: '/Pg200',
+    children: [
+      { label: 'ITソリューション・製品', path: '/Pg201' },
+      { label: '宿泊施設運営・集客支援', path: '/Pg202' },
+      { label: '収益不動産コンサルティング', path: '/Pg203' },
+    ],
+  },
+  { label: 'お知らせ', path: '/Pg300' },
+  {
+    label: '会社情報',
+    path: '/Pg400',
+    children: [
+      { label: 'CEOメッセージ', path: '/Pg401' },
+      { label: '会社概要', path: '/Pg402' },
+      { label: 'アクセス', path: '/Pg405' },
+    ],
+  },
+  { label: '採用情報', path: '/Pg500' },
+];
+const contactPagePath = '/Pg600';
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -20,8 +51,31 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
 
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const [isMobile, setIsMobile] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
-  const isMobileIframe = useScreenSizeStore((state) => state.isMobileIframe);
+  // 为移动端菜单添加新的状态，追踪展开的项
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  // 处理窗口大小的监听
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // 768px 是我们的断点
+    };
+
+    // 首次加载时检查一次
+    checkScreenSize();
+
+    // 添加窗口大小变化监听
+    window.addEventListener('resize', checkScreenSize);
+
+    // 组件卸载时移除监听
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []); // 空依赖数组确保这个 effect 只在挂载和卸载时运行
+  const handleAccordionToggle = (path: string) => {
+    setExpandedItems(prev =>
+      prev.includes(path) ? prev.filter(p => p !== path) : [...prev, path]
+    );
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -31,48 +85,78 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
 
 
   useEffect(() => {
-    if (!isMobileIframe && isMenuOpen) {
+    if (!isMobile && isMenuOpen) {
       toggleMenu();
     }
-  }, [isMobileIframe, isMenuOpen, toggleMenu]);
+  }, [isMobile, isMenuOpen, toggleMenu]);
 
   const [initialPathname, setInitialPathname] = useState(pathname);
 
   useEffect(() => {
-    if (isMobileIframe && isMenuOpen && pathname !== initialPathname) {
+    if (isMobile && isMenuOpen && pathname !== initialPathname) {
       toggleMenu();
     }
     setInitialPathname(pathname);
-  }, [pathname, isMobileIframe, isMenuOpen, toggleMenu, initialPathname]);
+  }, [pathname, isMobile, isMenuOpen, toggleMenu, initialPathname]);
 
+  // 移动端菜单
+  useEffect(() => {
+    // 关闭主菜单时，也重置手风琴的展开状态
+    if (!isMenuOpen) {
+      setExpandedItems([]);
+    }
+  }, [isMenuOpen]);
 
-  const navItems = [
-    { path: '/Pg100', label: getMessage('common', 'nav_pg100') },
-    { path: '/Pg200', label: getMessage('common', 'nav_pg200') },
-    { path: '/Pg300', label: getMessage('common', 'nav_pg300') },
-    { path: '/Pg400', label: getMessage('common', 'nav_pg400') },
-    { path: '/Pg500', label: getMessage('common', 'nav_pg500') },
-  ];
-  const contactPagePath = '/pg600'; // お問い合わせページのパス
 
   return (
     <>
       <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="custom-header-inner">
           <div className="logo-group">
-            <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
+            <Image src="/images/logo.png" alt="Logo" width={180} height={40} />
           </div>
 
           {/* 2. デスクトップ用ナビゲーション (PC表示時) */}
-          {!isMobileIframe && (
+          {!isMobile && (
             <div className="header-nav-right">
-              <nav className="nav-menu">
-                
-                {navItems.map((item) => (
-                  <Link key={item.path} href={item.path} className={`nav-item ${pathname === item.path ? 'active' : ''}`}>
-                    {item.label}
-                  </Link>
-                ))}
+              {/* 3. 修改导航栏的渲染逻辑 */}
+              <nav>
+                <ul className="nav-menu">
+                  {navData.map((item) => (
+                    <li
+                      key={item.path}
+                      className="nav-item-container"
+                      onMouseEnter={() => setOpenMenu(item.path)}
+                      onMouseLeave={() => setOpenMenu(null)}
+                    >
+                      {/* 4. 根据是否有子菜单来渲染不同的元素 */}
+                      {item.children ? (
+                        // 如果有子菜单，渲染一个不可点击的 <span>
+                        <span className={`nav-item nav-item-noclick ${pathname.startsWith(item.path) ? 'active' : ''}`}>
+                          {item.label}
+                        </span>
+                      ) : (
+                        // 如果没有子菜单，渲染一个可点击的 <Link>
+                        <Link href={item.path} className={`nav-item ${pathname.startsWith(item.path) ? 'active' : ''}`}>
+                          {item.label}
+                        </Link>
+                      )}
+
+                      {/* 下拉菜单的逻辑保持不变 */}
+                      {item.children && (
+                        <ul className={`dropdown-menu ${openMenu === item.path ? 'open' : ''}`}>
+                          {item.children.map((child) => (
+                            <li key={child.path} className="dropdown-item">
+                              <Link href={child.path} className="dropdown-link">
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </nav>
               {/* <LanguageSwitcher scrolled={scrolled} /> */}
               <Link href={contactPagePath} className="nav-contact-button">
@@ -83,9 +167,9 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
 
           <div className="header-right">
             {/* 桌面端语言切换器 */}
-            {!isMobileIframe && <LanguageSwitcher scrolled={scrolled} />}
+            {!isMobile && <LanguageSwitcher scrolled={scrolled} />}
             {/* 手机端菜单切换按钮 */}
-            {isMobileIframe && (
+            {isMobile && (
               <button className="menu-toggle" onClick={toggleMenu}>
                 {isMenuOpen ? <FiX size={28} /> : <FiAlignJustify size={28} />}
               </button>
@@ -95,23 +179,46 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
       </header>
 
       {/* 3. モバイル用ナビゲーション (モバイル表示時) */}
-      {isMobileIframe && isMenuOpen && (
+      {isMobile && isMenuOpen && (
         <div className="mobile-menu-overlay">
           <div className="mobile-menu-content">
             <nav className="mobile-nav-menu">
-              {navItems.map((item) =>
-                pathname === item.path ? (
-                  <span key={item.path} className="nav-item active">
-                    {item.label}
-                  </span>
-                ) : (
-                  <Link key={item.path} href={item.path} className="nav-item">
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </nav>
+              {navData.map((item) => {
+                const isExpanded = expandedItems.includes(item.path);
 
+                if (item.children) {
+                  // 有子菜单的项，渲染成可展开的按钮
+                  return (
+                    <div key={item.path} className="mobile-menu-group">
+                      <button className="accordion-toggle" onClick={() => handleAccordionToggle(item.path)}>
+                        <span>{item.label}</span>
+                        {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
+                      </button>
+                      <div className={`submenu-list ${isExpanded ? 'expanded' : ''}`}>
+                        <ul>
+                          {item.children.map((child) => (
+                            <li key={child.path} className="submenu-item">
+                              <Link href={child.path} className="submenu-link">{child.label}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  );
+                } else {
+                  // 没有子菜单的项，渲染成普通链接
+                  return (
+                    <Link key={item.path} href={item.path} className="mobile-menu-link">
+                      {item.label}
+                    </Link>
+                  );
+                }
+              })}
+              {/* 联系我们链接 */}
+              <Link href={contactPagePath} className="mobile-menu-link contact">
+                {getMessage('common', 'nav_pg600')}
+              </Link>
+            </nav>
             <div className="mobile-language-switcher">
               <LanguageSwitcher scrolled={false} />
             </div>

@@ -125,3 +125,163 @@
 .mobile-language-switcher {
   margin-top: 2rem;
 }
+
+/* === ADD THESE NEW STYLES FOR DROPDOWN MENU === */
+
+/* Modify nav-menu to be a list container */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Adjust gap as needed */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+/* New container for each nav item to handle positioning */
+.nav-item-container {
+  position: relative; /* This is crucial for positioning the dropdown */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* The dropdown menu itself */
+.dropdown-menu {
+  position: absolute;
+  top: 85%; /* Position it below the nav item */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  min-width: 220px;
+  list-style: none;
+  padding: 0.75rem 0;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  z-index: 1001;
+
+  /* Default hidden state for animation */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* The open state for the dropdown */
+.dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  /* No specific styles needed for the li */
+}
+
+.dropdown-link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: #374151;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #f3f4f6;
+  color: #1d4ed8;
+}
+
+.nav-item-noclick {
+  cursor: default; /* Show the default arrow cursor, not the pointer hand */
+}
+
+
+
+/* === ADD THESE NEW STYLES FOR MOBILE ACCORDION MENU === */
+
+/* Overwrite previous mobile nav menu styles */
+.mobile-nav-menu {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style for a normal link item */
+.mobile-menu-link {
+  display: block;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+}
+.mobile-menu-link.contact {
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+/* Container for an accordion group (e.g., 事業内容 and its children) */
+.mobile-menu-group {
+  width: 100%;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* The clickable button to toggle the accordion */
+.accordion-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  color: #1f2937;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container for the sub-menu */
+.submenu-list {
+  background-color: #f9fafb; /* Slightly different background for sub-items */
+  overflow: hidden;
+  /* Animation using max-height */
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* The state when the accordion is expanded */
+.submenu-list.expanded {
+  /* Set a max-height large enough to fit all content */
+  max-height: 500px; 
+}
+
+.submenu-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.submenu-item {
+  /* no specific style needed for li */
+}
+
+.submenu-link {
+  display: block;
+  padding: 0.8rem 2rem 0.8rem 3rem; /* Indent sub-items */
+  font-size: 1rem;
+  color: #4b5563;
+  text-decoration: none;
+  border-top: 1px solid #e5e7eb;
+}
+.submenu-link:hover {
+  background-color: #f0f4f8;
+}
