@@ -48,9 +48,9 @@ const Footer = () => {
     { href: '/pg901', label: '記事一覧' },
     { href: '/pg500', label: '採用情報' }, // 指向一级页面
     { href: '/pg600', label: 'お問い合わせ' }, // 指向一级页面
-    { href: '/pg902', label: '個人情報保護方針' },
-    { href: '/pg903', label: 'DX戦略' },
-    { href: '/pg904', label: 'パートナーシップ構築宣言' },
+    // { href: '/pg902', label: '個人情報保護方針' },
+    // { href: '/pg903', label: 'DX戦略' },
+    // { href: '/pg904', label: 'パートナーシップ構築宣言' },
   ];
 
   return (
@@ -59,7 +59,7 @@ const Footer = () => {
         {/* Left: Logo */}
         <div className="footer-logo">
           <Link href="/pg100"> {/* 首页指向pg100 */}
-            <Image src="/logo-sozonext-dark.svg" alt="SOZONEXT Logo" width={200} height={50} />
+            <Image src="/images/logo.png" alt="SOZONEXT Logo" width={200} height={160} />
           </Link>
         </div>
 
@@ -101,10 +101,10 @@ const Footer = () => {
       {/* Bottom: Address and Copyright */}
       <div className="footer-bottom">
         <p className="footer-address">
-          〒111-0041 東京都台東区元浅草2-6-4 上野コアビル9階 TEL 03-3842-1552
+          〒103-0002 東京都中央区日本橋馬喰町1丁目12-7 シティハイツ日本橋202
         </p>
         <p className="footer-copyright">
-          Copyright © 2024 SOZONEXT Co.,Ltd.
+          Copyright © 2024 BLUESEA Co.,Ltd.
         </p>
       </div>
     </footer>

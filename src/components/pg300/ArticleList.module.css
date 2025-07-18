@@ -1,0 +1,128 @@
+.section {
+    padding: 4rem 2rem;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+/* Filter Bar Styles */
+.filterBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.tabs {
+    display: flex;
+    gap: 2rem;
+}
+
+.tab {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: #6b7280;
+    border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+    color: #1d4ed8;
+    border-bottom-color: #1d4ed8;
+    font-weight: 600;
+}
+
+.searchIcon {
+    font-size: 1.5rem;
+    color: #6b7280;
+}
+
+/* List Container */
+.listContainer {
+    margin-top: 2rem;
+}
+
+/* Shared link wrapper style */
+.articleLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Style for "お知らせ" (News) Items */
+.newsItem {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s;
+}
+
+.newsItem:hover {
+    background-color: #f9fafb;
+}
+
+.date {
+    color: #6b7280;
+}
+
+.newsTitle {
+    font-weight: 500;
+}
+
+.categoryTag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    color: white;
+}
+
+.categoryTag.news {
+    background-color: #6b7280;
+}
+
+.categoryTag.blog {
+    background-color: #1d4ed8;
+}
+
+/* Style for "ブログ" (Blog) Cards */
+.blogCard {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s;
+}
+
+.blogCard:hover {
+    background-color: #f9fafb;
+}
+
+.blogContent {
+    flex: 1;
+}
+
+.blogTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.blogExcerpt {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.blogImageWrapper img {
+    border-radius: 8px;
+}

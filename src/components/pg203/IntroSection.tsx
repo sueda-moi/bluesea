@@ -9,7 +9,7 @@ const IntroSection = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>宿泊ビジネスのデジタル革新と<br />収益最大化のプロフェッショナルサポート</h2>
         <p className={styles.description}>
-          SOZONEXTのコンサルティングは、単なるアドバイスに留まりません。市場分析から具体的な運営戦略、最新DXツールの導入、そして日々のオペレーション改善まで、現場に深く入り込み、クライアント様と一体となって成果を追求します。私たちは、貴施設の“第二の経営企画室”として機能します。
+          BLUESEAのコンサルティングは、単なるアドバイスに留まりません。市場分析から具体的な運営戦略、最新DXツールの導入、そして日々のオペレーション改善まで、現場に深く入り込み、クライアント様と一体となって成果を追求します。私たちは、貴施設の“第二の経営企画室”として機能します。
         </p>
         <div className={styles.columnsWrapper}>
           <div className={styles.column}>

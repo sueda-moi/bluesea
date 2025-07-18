@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiAlignJustify, FiChevronDown, FiChevronUp, FiX } from 'react-icons/fi';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher';
-import { useMessage } from '@/lib/useMessage';
+//import { useMessage } from '@/lib/useMessage';
 import './Header.css';
 
 // 1. 定义新的数据和类型
@@ -38,8 +38,8 @@ const navData: NavLink[] = [
     ],
   },
   { label: '採用情報', path: '/Pg500' },
+  { label: 'お問い合わせ', path: '/Pg600' },
 ];
-const contactPagePath = '/Pg600';
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -47,7 +47,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
-  const getMessage = useMessage(); // メッセージ取得関数を使用
+  //const getMessage = useMessage(); // メッセージ取得関数を使用
 
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
       <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="custom-header-inner">
           <div className="logo-group">
-            <Image src="/images/logo.png" alt="Logo" width={180} height={40} />
+            <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
           </div>
 
           {/* 2. デスクトップ用ナビゲーション (PC表示時) */}
@@ -159,9 +159,9 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                 </ul>
               </nav>
               {/* <LanguageSwitcher scrolled={scrolled} /> */}
-              <Link href={contactPagePath} className="nav-contact-button">
+              {/* <Link href={contactPagePath} className="nav-contact-button">
                 {getMessage('common', 'nav_pg600')}
-              </Link>
+              </Link> */}
             </div>
           )}
 
@@ -215,9 +215,9 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                 }
               })}
               {/* 联系我们链接 */}
-              <Link href={contactPagePath} className="mobile-menu-link contact">
-                {getMessage('common', 'nav_pg600')}
-              </Link>
+              {/* <Link href={contactPagePath} className="mobile-menu-link contact">
+               
+              </Link> */}
             </nav>
             <div className="mobile-language-switcher">
               <LanguageSwitcher scrolled={false} />
