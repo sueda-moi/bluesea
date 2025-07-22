@@ -1,0 +1,19 @@
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 4rem;
+    /* Space between nav and content */
+}
+
+.leftColumn {
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.rightColumn {
+    flex-grow: 1;
+    min-width: 0;
+    /* Important for flexbox to prevent overflow */
+}

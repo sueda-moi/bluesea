@@ -1,0 +1,58 @@
+.section {
+    padding: 5rem 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.title {
+    font-size: 1.5rem;
+    /* 页面内标题可以小一些 */
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.profileContainer {
+    max-width: 960px;
+    margin: 0 auto;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Using CSS Grid for the definition list layout */
+.profileList {
+    display: grid;
+    /* First column (label) fits its content, second column (value) takes the rest */
+    grid-template-columns: auto 1fr;
+}
+
+.label,
+.value {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.label {
+    background-color: #f9fafb;
+    /* Light gray background for labels */
+    font-weight: 600;
+    color: #1f2937;
+    border-right: 1px solid #e5e7eb;
+}
+
+.value {
+    margin: 0;
+    /* Reset browser default margin on <dd> */
+    line-height: 1.8;
+    color: #374151;
+}
+
+/* Responsive: stack them on mobile */
+@media (max-width: 768px) {
+    .profileList {
+        grid-template-columns: 1fr;
+        /* A single column */
+    }
+
+    .label {
+        border-right: none;
+    }
+}

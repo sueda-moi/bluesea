@@ -1,0 +1,79 @@
+.section {
+    padding: 5rem 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.timelineContainer {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* The vertical line of the timeline */
+.timelineContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100px;
+    /* Position it based on the width of the date column */
+    height: 100%;
+    width: 2px;
+    background-color: #e5e7eb;
+}
+
+.timelineItem {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.timelineDate {
+    width: 100px;
+    /* Fixed width for the date column */
+    flex-shrink: 0;
+    font-weight: 600;
+    color: #1f2937;
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.month {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #6b7280;
+}
+
+.timelineContent {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    flex-grow: 1;
+    line-height: 1.8;
+}
+
+/* The dot on the timeline */
+.timelineItem::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    /* Align with the text line */
+    left: 92px;
+    /* Center it on the vertical line */
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid #1d4ed8;
+    /* Brand blue border */
+    z-index: 1;
+}

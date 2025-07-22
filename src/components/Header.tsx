@@ -32,9 +32,10 @@ const navData: NavLink[] = [
     label: '会社情報',
     path: '/Pg400',
     children: [
-      { label: 'CEOメッセージ', path: '/Pg401' },
-      { label: '会社概要', path: '/Pg402' },
-      { label: 'アクセス', path: '/Pg405' },
+      { label: 'CEOメッセージ', path: '/Pg400#ceo-message' },
+      { label: '会社概要', path: '/Pg400#profile' },
+      { label: '沿革', path: '/Pg400#history' },
+      { label: 'アクセス', path: '/Pg400#access' },
     ],
   },
   { label: '採用情報', path: '/Pg500' },

@@ -1,0 +1,41 @@
+.section {
+    padding: 5rem 2rem;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.imageWrapper {
+    flex-shrink: 0;
+}
+
+.ceoImage {
+    border-radius: 8px;
+}
+
+.textWrapper {
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.paragraph {
+    line-height: 2;
+    margin-bottom: 1.5rem;
+}
+
+.signature {
+    text-align: right;
+    font-weight: 600;
+    margin-top: 2rem;
+}
