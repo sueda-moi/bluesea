@@ -1,11 +1,26 @@
 {
-    "nav_home": "ホーム",
-  "nav_about": "概要",
-  "nav_services": "事業内容",
-  "nav_contact": "お問い合わせ",
-  "language_toggle": "言語切替",
-  "pg001_title": "私たちはＩＴを通してお客様のビジネスに最大限に貢献します。",
-  "pg001_subtitle": "「人」を大事にし、社員が幸せを感じる会社を目指します。" ,
-  "pg001_button_learn_more": "詳しく見る",
-  "footer_copyright": "ALL RIGHTS RESERVED ©Nexus Technology Co., Ltd."
+  "page_title": "お問い合わせ",
+  "form_heading": "ご質問・ご相談はこちらからご連絡ください",
+  "access_title": "アクセス",
+  "access_address": "〒103-0004 東京都中央区東日本橋３丁目１０−１４ サンライズ橘ビル７F",
+
+  "form_name_label": "お名前",
+  "form_company_label": "会社名（任意）",
+  "form_phone_label": "電話番号",
+  "form_email_label": "メールアドレス",
+  "form_message_label": "お問い合わせ内容",
+
+  "form_phone_placeholder": "090-xxxx-xxxx",
+  "form_email_placeholder": "example@example.com",
+  "form_company_placeholder": "（例）ネクサステクノロジー株式会社",
+
+  "form_submit_button": "送信する",
+  "form_submitting": "送信中…",
+  "form_success_message": "送信が完了しました。ありがとうございます！",
+
+  "toast_missing_name": "お名前は必須です。",
+  "toast_missing_contact": "電話番号またはメールアドレスのいずれかを入力してください。",
+  "toast_success": "送信が完了しました！",
+  "toast_fail": "送信に失敗しました。",
+  "toast_error": "送信中にエラーが発生しました。"
 }

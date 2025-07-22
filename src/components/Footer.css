@@ -97,3 +97,36 @@
 .footer-copyright {
   margin: 0;
 }
+
+/* === ADD THESE STYLES AT THE END FOR RESPONSIVENESS === */
+@media (max-width: 768px) {
+
+  .footer-main {
+    /* On mobile, stack the main sections vertically instead of horizontally */
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start (left) */
+    gap: 3rem; /* Increase gap for vertical stacking */
+  }
+
+  .footer-sitemap {
+    /* Stack the sitemap columns (事業内容, 会社情報) vertically as well */
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-left: 0; /* Remove the horizontal padding from the desktop view */
+    width: 100%; /* Allow sitemap to take full width */
+  }
+
+  .link-group-title {
+    /* Make the titles slightly smaller on mobile */
+    font-size: 1.125rem;
+  }
+
+  .footer-standalone-links {
+    width: 100%;
+  }
+
+  .footer-address, .footer-copyright {
+    /* Make the text a bit smaller to fit better */
+    font-size: 0.8rem;
+  }
+}

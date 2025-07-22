@@ -15,7 +15,7 @@ const ContactBanner = () => {
 
       {/* This div is the white, floating card */}
       <div className={styles.contentBox}>
-        <Link href="/pg600" className={styles.contactLink}>
+        <Link href="/Pg600" className={styles.contactLink}>
           <span className={styles.icon}>✉️</span>
           <span>{getMessage('common', 'nav_pg600')}</span>
         </Link>

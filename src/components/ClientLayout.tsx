@@ -109,7 +109,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             transition={{ duration: 0.4 }}
             className="flex-1"
           >
-            <main className="flex-1 w-full">{children}</main>
+            <main className="flex-1 w-full main-content">{children}</main>
           </motion.div>
         )}
       </AnimatePresence>

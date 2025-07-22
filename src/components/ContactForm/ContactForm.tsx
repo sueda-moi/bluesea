@@ -32,12 +32,12 @@ const ContactForm: React.FC = () => {
     const message = formData.get('message')?.toString().trim() || '';
 
     if (!name) {
-      toast.warn(getMessage('Pg500', 'toast_missing_name'));
+      toast.warn(getMessage('Pg600', 'toast_missing_name'));
       return;
     }
 
     if (!phone && !email) {
-      toast.warn(getMessage('Pg500', 'toast_missing_contact'));
+      toast.warn(getMessage('Pg600', 'toast_missing_contact'));
       return;
     }
 
@@ -54,14 +54,14 @@ const ContactForm: React.FC = () => {
       if (res.ok) {
         setFormStatus('success');
         form.reset();
-        toast.success(getMessage('Pg500', 'toast_success'));
+        toast.success(getMessage('Pg600', 'toast_success'));
       } else {
         setFormStatus('error');
-        toast.error(getMessage('Pg500', 'toast_fail'));
+        toast.error(getMessage('Pg600', 'toast_fail'));
       }
     } catch (err) {
       setFormStatus('error');
-      toast.error(getMessage('Pg500', 'toast_error'));
+      toast.error(getMessage('Pg600', 'toast_error'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -72,40 +72,40 @@ const ContactForm: React.FC = () => {
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="name">
-          {getMessage('Pg500', 'form_name_label')}
+          {getMessage('Pg600', 'form_name_label')}
           <span className="required">*</span>
         </label>
         <input id="name" name="name" type="text" required />
       </div>
 
       <div className="form-group">
-        <label htmlFor="company">{getMessage('Pg500', 'form_company_label')}</label>
+        <label htmlFor="company">{getMessage('Pg600', 'form_company_label')}</label>
         <input id="company" name="company" type="text" />
       </div>
 
       <div className="form-group">
-        <label htmlFor="phone">{getMessage('Pg500', 'form_phone_label')}</label>
+        <label htmlFor="phone">{getMessage('Pg600', 'form_phone_label')}</label>
         <input
           id="phone"
           name="phone"
           type="tel"
-          placeholder={getMessage('Pg500', 'form_phone_placeholder')}
+          placeholder={getMessage('Pg600', 'form_phone_placeholder')}
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="email">{getMessage('Pg500', 'form_email_label')}</label>
+        <label htmlFor="email">{getMessage('Pg600', 'form_email_label')}</label>
         <input
           id="email"
           name="email"
           type="email"
-          placeholder={getMessage('Pg500', 'form_email_placeholder')}
+          placeholder={getMessage('Pg600', 'form_email_placeholder')}
         />
       </div>
 
       <div className="form-group">
         <label htmlFor="message">
-          {getMessage('Pg500', 'form_message_label')}
+          {getMessage('Pg600', 'form_message_label')}
           <span className="required">*</span>
         </label>
         <textarea id="message" name="message" rows={5} required></textarea>
@@ -113,8 +113,8 @@ const ContactForm: React.FC = () => {
 
       <button type="submit" disabled={loading} className="submit-button">
         {loading
-          ? getMessage('Pg500', 'form_submitting')
-          : getMessage('Pg500', 'form_submit_button')}
+          ? getMessage('Pg600', 'form_submitting')
+          : getMessage('Pg600', 'form_submit_button')}
       </button>
 
       {formStatus === 'success' && (
@@ -128,7 +128,7 @@ const ContactForm: React.FC = () => {
               d="M14 27l7 7 17-17"
             />
           </svg>
-          <p>{getMessage('Pg500', 'form_success_message')}</p>
+          <p>{getMessage('Pg600', 'form_success_message')}</p>
         </div>
       )}
     </form>

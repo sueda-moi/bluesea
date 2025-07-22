@@ -155,3 +155,7 @@ html.is-mobile-iframe .scroll-down-btn {
   height: 2.5rem;
   font-size: 1.2rem;
 }
+
+.main-content {
+  padding-top: 80px; /* 80px is our fixed header height */
+}
