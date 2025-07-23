@@ -1,0 +1,100 @@
+.pageContainer {
+    padding: 4rem 2rem;
+    background-color: #f9fafb;
+}
+
+.formContainer {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.applyingFor {
+    color: #6b7280;
+}
+
+.jobTitle {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.backLink {
+    color: #1d4ed8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Basic styling for file input */
+.fileInput {
+    font-size: 0.9rem;
+}
+
+.fileInput::file-selector-button {
+    margin-right: 1rem;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: #f9fafb;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.fileInput::file-selector-button:hover {
+    background-color: #f0f4f8;
+}
+
+.submitButton {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.submitButton:hover {
+    background-color: #1d4ed8;
+}

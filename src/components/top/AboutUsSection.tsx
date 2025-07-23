@@ -14,20 +14,19 @@ const aboutLinks: AboutLinkProps[] = [
   {
     title: '経営理念',
     description: '私たちの使命と価値観',
-    href: '/pg401' // 假设链接到CEOメッセージ或独立的理念页面
+    href: '/Pg400#ceo-message'// 假设链接到CEOメッセージ或独立的理念页面
   },
   {
     title: '会社概要',
     description: '基本的な会社情報',
-    href: '/pg402' // 链接到会社概要页面
+    href: '/Pg400#profile' // 链接到会社概要页面
   },
   {
     title: 'アクセス',
     description: 'オフィスへの道順',
-    href: '/pg405' // 链接到アクセス页面
+    href: '/Pg400#access' // 链接到アクセス页面
   }
 ];
-
 
 const AboutUsSection = () => {
   return (

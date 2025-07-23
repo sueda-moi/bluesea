@@ -16,19 +16,19 @@ const dummyNewsData: NewsItemProps[] = [
     date: '2025.07.16',
     category: 'プレスリリース',
     title: '新サービス「不動産価値最大化プラン」の提供を開始しました。',
-    href: '/pg301' // Example link to a specific news article
+    href: '/Pg300' 
   },
   {
     date: '2025.07.10',
     category: 'お知らせ',
     title: '夏季休業に関するご案内（2025年8月11日～8月15日）',
-    href: '/pg302'
+    href: '/Pg300'
   },
   {
     date: '2025.06.28',
     category: 'メディア掲載',
     title: '「週刊不動産テック」に弊社代表のインタビューが掲載されました。',
-    href: '/pg303'
+    href: '/Pg300'
   },
 ];
 
@@ -48,8 +48,8 @@ const NewsSection = () => {
           ))}
         </div>
         <div className={styles.buttonContainer}>
-          {/* This button links to the main news list page (pg300) */}
-          <Link href="/pg300" className={styles.viewMoreButton}>
+          {/* This button links to the main news list page (Pg300) */}
+          <Link href="/Pg300" className={styles.viewMoreButton}>
             ニュース一覧へ
           </Link>
         </div>

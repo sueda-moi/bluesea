@@ -4,11 +4,12 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-import Header from '@/components/Header';
+
 import Footer from '@/components/Footer';
 import LoadingScreen from '@/components/LoadingScreen/LoadingScreen';
 import { usePageTransition } from '@/hooks/usePageTransition';
 import { useLocaleStore } from '@/store/useLocaleStore';
+import Header from '@/components/Header';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

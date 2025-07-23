@@ -1,0 +1,46 @@
+.main {
+    background-color: #fff;
+}
+
+.contentWrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+}
+
+.subheading {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #1d4ed8;
+    padding-left: 1rem;
+}
+
+.paragraph {
+    font-size: 1rem;
+    line-height: 2;
+    color: #374151;
+}
+
+.backButtonContainer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.backButton {
+    display: inline-block;
+    border: 1px solid #6b7280;
+    color: #374151;
+    background-color: transparent;
+    padding: 0.75rem 2.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.backButton:hover {
+    background-color: #f3f4f6;
+    border-color: #374151;
+}

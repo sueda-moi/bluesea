@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; // 引入 useState
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiX } from 'react-icons/fi';
 import styles from './ArticleList.module.css';
 // Type for a single article
 type Article = {
@@ -46,12 +46,28 @@ const ArticleList = () => {
 
     const [activeTab, setActiveTab] = useState('全て');
 
-    const filteredArticles = articlesData.filter(article => {
-        if (activeTab === '全て') {
-            return true; // 如果是“所有”，则不过滤
-        }
-        return article.category === activeTab; // 否则只返回分类匹配的文章
-    });
+    // 添加状态来管理搜索查询和搜索框的显示
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
+
+    const filteredArticles = articlesData
+        .filter(article => {
+            // 第一步：按标签筛选
+            if (activeTab === '全て') return true;
+            return article.category === activeTab;
+        })
+        .filter(article => {
+            // 第二步：在标签筛选结果的基础上，按关键词搜索
+            if (searchQuery.trim() === '') return true; // 如果搜索词为空，则不筛选
+
+            const lowerCaseQuery = searchQuery.toLowerCase();
+            const titleMatch = article.title.toLowerCase().includes(lowerCaseQuery);
+            // 如果是博客，也搜索摘要内容
+            const excerptMatch = article.excerpt ? article.excerpt.toLowerCase().includes(lowerCaseQuery) : false;
+
+            return titleMatch || excerptMatch;
+        });
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>
@@ -77,9 +93,19 @@ const ArticleList = () => {
                             ブログ
                         </button>
                     </div>
-                    {/* 搜索图标暂时只做样式 */}
-                    <div className={styles.searchIcon}>
-                        <FiSearch />
+                    <div className={styles.searchArea}>
+                        {/* 根据 isSearchVisible 状态来显示/隐藏输入框 */}
+                        <input
+                            type="text"
+                            placeholder="キーワードで検索..."
+                            className={`${styles.searchInput} ${isSearchVisible ? styles.visible : ''}`}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button className={styles.searchButton} onClick={() => setIsSearchVisible(!isSearchVisible)}>
+                            {/* 如果搜索框可见，显示关闭图标 */}
+                            {isSearchVisible ? <FiX /> : <FiSearch />}
+                        </button>
                     </div>
                 </div>
                 {/* Articles List */}

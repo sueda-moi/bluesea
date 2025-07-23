@@ -15,19 +15,19 @@ const services = [
     title: 'ソリューション事業',
     description: '不動産テック、リーガルテック、M&Aテックなど、各分野の専門家がDXを推進し、新たな価値を創造します。',
     image: '/images/top/service-1.jpg', // TODO: Replace image
-    link: '/pg201'
+    link: '/Pg201'
   },
   {
     title: '宿泊施設運営・集客支援',
     description: 'ホテル・旅館などの宿泊施設の運営改善、集客支援、DX導入をサポートし、収益性の向上に貢献します。',
     image: '/images/top/service-2.jpg', // TODO: Replace image
-    link: '/pg202'
+    link: '/Pg202'
   },
   {
     title: '収益不動産コンサルティング',
     description: '収益不動産の購入・売却、資産価値向上、ファイナンス戦略など、総合的なコンサルティングを提供します。',
     image: '/images/top/service-3.jpg', // TODO: Replace image
-    link: '/pg203'
+    link: '/Pg203'
   }
 ];
 

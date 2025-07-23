@@ -17,7 +17,7 @@ const revenueSupportData = {
         { text: 'データ分析に基づく販売戦略の立案と実行' },
     ],
     buttonText: '収益化支援の詳細を見る',
-    buttonLink: '/pg202/revenue' // Example link
+    buttonLink: '/Pg202/revenue' // Example link
 };
 
 // Data for the second service detail section
@@ -32,7 +32,7 @@ const marketingSupportData = {
         { text: 'レビュー分析と顧客満足度（GX）向上施策' },
     ],
     buttonText: 'マーケティング支援の詳細を見る',
-    buttonLink: '/pg202/marketing' // Example link
+    buttonLink: '/Pg202/marketing' // Example link
 };
 
 export default function Page202() {
