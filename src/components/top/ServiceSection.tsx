@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './ServiceSection.module.css'; // 1. Import the CSS module
+import styles from './ServiceSection.module.css';
 
+// 1. 定义类型
 type ServiceCardProps = {
   title: string;
   description: string;
@@ -10,26 +11,28 @@ type ServiceCardProps = {
   link: string;
 };
 
-const services = [
+// 2. 更新数据为藍海株式会社的业务
+const services: ServiceCardProps[] = [
   {
-    title: 'ソリューション事業',
-    description: '不動産テック、リーガルテック、M&Aテックなど、各分野の専門家がDXを推進し、新たな価値を創造します。',
+    title: '国際貿易・グローバル流通支援',
+    description: '日本と世界を結ぶ信頼の架け橋として、効率的で安定したグローバルサプライチェーンを構築・支援します。',
     image: '/images/top/service-1.jpg', // TODO: Replace image
-    link: '/Pg201'
+    link: '/Pg201' // 假设链接到事業内容主页
   },
   {
-    title: '宿泊施設運営・集客支援',
-    description: 'ホテル・旅館などの宿泊施設の運営改善、集客支援、DX導入をサポートし、収益性の向上に貢献します。',
+    title: '情報処理・SaaS開発',
+    description: 'ビジネスの非効率を解消する、最先端のSaaSアプリケーションを自社開発。企業のDXを強力に推進します。',
     image: '/images/top/service-2.jpg', // TODO: Replace image
-    link: '/Pg202'
+    link: '/Pg202' // 链接到ITソリューション页面
   },
   {
-    title: '収益不動産コンサルティング',
-    description: '収益不動産の購入・売却、資産価値向上、ファイナンス戦略など、総合的なコンサルティングを提供します。',
+    title: '不動産企画・収益化支援',
+    description: 'データとITを駆使し、遊休不動産の再生から運営までを一貫してサポート。資産価値の最大化を実現します。',
     image: '/images/top/service-3.jpg', // TODO: Replace image
-    link: '/Pg203'
+    link: '/Pg203' // 链接到不動産コンサルティング页面
   }
 ];
+
 
 // 2. The sub-component also uses the 'styles' object from the parent file
 const ServiceCard = ({ title, description, image, link }: ServiceCardProps) => (

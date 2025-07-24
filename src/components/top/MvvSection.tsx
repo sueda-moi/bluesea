@@ -6,13 +6,14 @@ const MvvSection = () => {
     <section className={styles.mvvSection}>
       <div className={styles.overlay}></div>
       <div className={styles.content}>
-        <h2 className={styles.title}>OUR MVV</h2>
+        <h2 className={styles.title}>OUR VISION</h2>
         <p className={styles.mainPhrase}>
-          テクノロジーとグローバルネットワークで、<br />
-          日本のすみずみまで、幸せを届ける
+          海のように広く、<br />
+          信頼と革新の波を次世代へ
         </p>
         <p className={styles.subtitle}>
-          私たちは、人、企業、社会の可能性を信じ、テクノロジーとグローバルな視点で、未来を共創します。
+          私たちは、国際貿易、IT、不動産の各分野における深い知見を融合させ、<br />
+          世界市場で競争力を持つ日本発の次世代型グローバル企業を目指します。
         </p>
       </div>
     </section>

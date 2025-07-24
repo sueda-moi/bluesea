@@ -1,19 +1,18 @@
 import React from 'react';
-// Import the CSS module
 import styles from './HeroSection.module.css';
 
 const HeroSection = () => {
   return (
-    // Use the styles object to apply classes
     <section className={styles.heroSection}>
       <div className={styles.heroOverlay}></div>
       <div className={styles.heroContent}>
+        {/* 基于您提供的 "経営理念・ビジョン" */}
         <h1 className={styles.heroTitle}>
-          SOZO(想像)して、SOZO(創造)し、<br />
-          幸せを届ける
+          海のように広く、<br />
+          信頼と革新の波を次世代へ
         </h1>
         <p className={styles.heroSubtitle}>
-          テクノロジーとグローバルネットワークで、日本のすみずみまで、幸せを届ける
+          世界市場における日本発の次世代型グローバル企業を目指します。
         </p>
       </div>
     </section>

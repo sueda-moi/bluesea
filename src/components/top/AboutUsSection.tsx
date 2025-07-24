@@ -9,22 +9,21 @@ type AboutLinkProps = {
   href: string;
 };
 
-// 2. Data for the three boxes
 const aboutLinks: AboutLinkProps[] = [
   {
     title: '経営理念',
-    description: '私たちの使命と価値観',
-    href: '/Pg400#ceo-message'// 假设链接到CEOメッセージ或独立的理念页面
+    description: '私たちの使命とビジョン',
+    href: '/Pg400#ceo-message' // 链接到Pg400的CEO致辞
   },
   {
     title: '会社概要',
     description: '基本的な会社情報',
-    href: '/Pg400#profile' // 链接到会社概要页面
+    href: '/Pg400#profile' // 链接到Pg400的公司概要
   },
   {
     title: 'アクセス',
-    description: 'オフィスへの道順',
-    href: '/Pg400#access' // 链接到アクセス页面
+    description: '本社オフィスへの道順',
+    href: '/Pg400#access' // 链接到Pg400的访问信息
   }
 ];
 
@@ -34,7 +33,7 @@ const AboutUsSection = () => {
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>ABOUT US</h2>
         <p className={styles.sectionSubtitle}>
-          SOZONEXTは、テクノロジーと不動産の融合で、新しい価値を創造する企業です。
+          藍海株式会社は、信頼と革新を軸に、多様な事業領域で新たな価値を創造する次世代型グローバル企業です。
         </p>
         <div className={styles.linksGrid}>
           {aboutLinks.map(link => (

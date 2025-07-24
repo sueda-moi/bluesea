@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './NewsSection.module.css';
 
-// 1. Define the type for a single news item
+// 1. Type definition for a single news item
 type NewsItemProps = {
   date: string;
   category: string;
@@ -10,25 +10,25 @@ type NewsItemProps = {
   href: string;
 };
 
-// 2. Create some dummy data for demonstration
+// 2. Update data with news relevant to "Blue Ocean Co., Ltd."
 const dummyNewsData: NewsItemProps[] = [
   {
-    date: '2025.07.16',
-    category: 'プレスリリース',
-    title: '新サービス「不動産価値最大化プラン」の提供を開始しました。',
-    href: '/Pg300' 
-  },
-  {
-    date: '2025.07.10',
+    date: '2024.01.19',
     category: 'お知らせ',
-    title: '夏季休業に関するご案内（2025年8月11日～8月15日）',
-    href: '/Pg300'
+    title: '次世代型グローバル企業を目指す「藍海株式会社」設立のお知らせ',
+    href: '/news/Pg301' // Link to the specific news detail page
   },
   {
-    date: '2025.06.28',
-    category: 'メディア掲載',
-    title: '「週刊不動産テック」に弊社代表のインタビューが掲載されました。',
-    href: '/Pg300'
+    date: '2024.04.15',
+    category: 'プレスリリース',
+    title: 'グローバル事業拡大の拠点として、シンガポールオフィスを開設しました。',
+    href: '/news/Pg302'
+  },
+  {
+    date: '2025.06.20', // Use a more recent date
+    category: '事業関連',
+    title: '藍海株式会社、不動産収益化支援サービスを正式にローンチしました。',
+    href: '/Pg203' // Can link directly to the service page we created
   },
 ];
 
@@ -49,7 +49,7 @@ const NewsSection = () => {
         </div>
         <div className={styles.buttonContainer}>
           {/* This button links to the main news list page (Pg300) */}
-          <Link href="/Pg300" className={styles.viewMoreButton}>
+          <Link href="/pg300" className={styles.viewMoreButton}>
             ニュース一覧へ
           </Link>
         </div>

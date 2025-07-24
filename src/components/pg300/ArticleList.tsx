@@ -12,34 +12,34 @@ type Article = {
     image?: string;   // Only for blogs
     href: string;
 };
-// Dummy data mixing blogs and announcements
+
 const articlesData: Article[] = [
-    {
-        category: 'ブログ',
-        title: '民泊投資で成功するための完全ガイド | メリット・デメリットから始め方、収益化戦略まで徹底解説',
-        excerpt: '民泊投資を始めたいけれど、何から手をつければ良いか分からない...。本記事では、そんなお悩みを解決します...',
-        image: '/images/pg300/blog-1.jpg', // TODO: Replace
-        href: '#'
-    },
-    {
-        category: 'お知らせ',
-        date: '2025/06/26',
-        title: '株式会社BLUESEA・双日レジデンシャルパートナーズ株式会社が提供する新たな宿泊体験',
-        href: '#'
-    },
-    {
-        category: 'ブログ',
-        title: '民泊許可完全ガイド | 必要書類・申請方法・条件・費用をわかりやすく解説',
-        excerpt: '民泊運営を始めるには、旅館業法に基づく許可が必要です。本記事では許可取得の全体像を分かりやすく解説...',
-        image: '/images/pg300/blog-2.jpg', // TODO: Replace
-        href: '#'
-    },
-    {
-        category: 'お知らせ',
-        date: '2025/05/26',
-        title: '株式会社BLUESEA自社ブランド「STARRY STAY」シリーズの展開を開始',
-        href: '#'
-    },
+  {
+    category: 'お知らせ',
+    date: '2024.01.19',
+    title: '次世代型グローバル企業「藍海株式会社」設立のお知らせ',
+    href: '/news/Pg301'
+  },
+  {
+    category: 'ブログ',
+    title: '不動産投資における「ブルーオーシャン戦略」とは？',
+    excerpt: '競争の激しい市場でも、新たな価値を創造し高収益を生み出す「ブルーオーシャン戦略」。本記事では、その具体的な考え方と、藍海株式会社が実践する不動産企画への応用について解説します。',
+    image: '/images/pg300/blog-1.jpg', // TODO: Replace image
+    href: '/news/Pg304' // Unique link for this article
+  },
+  {
+    category: 'お知らせ',
+    date: '2024.04.15',
+    title: 'グローバル事業のハブとしてシンガポール拠点を開設',
+    href: '/news/Pg302'
+  },
+  {
+    category: 'ブログ',
+    title: '初めての海外輸出入：失敗しないための5つのチェックポイント',
+    excerpt: 'グローバルビジネスの第一歩、輸出入業務。複雑な手続きや文化の違いなど、多くの落とし穴が存在します。藍海の専門家が、成功への鍵となる5つの必須チェックポイントを解説します。',
+    image: '/images/pg300/blog-2.jpg', // TODO: Replace image
+    href: '/news/Pg305' // Unique link for this article
+  },
 ];
 
 const ArticleList = () => {

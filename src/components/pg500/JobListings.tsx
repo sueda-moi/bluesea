@@ -18,13 +18,14 @@ const jobsData: JobPosting[] = [
     tags: ['中途採用 (正社員)', '本社 (東京都千代田区)'],
     image: '/images/pg500/job-01.jpg', // TODO: Replace image
     href: '/careers/it-engineer' // Example link
-  },
-  {
-    title: '宿泊施設や遊休施設のカスタマーサービス担当者',
-    tags: ['正社員', '本社 (東京都千代田区)'],
-    image: '/images/pg500/job-02.jpg', // TODO: Replace image
-    href: '/careers/customer-service'
-  },
+  }
+  // ,
+  // {
+  //   title: '宿泊施設や遊休施設のカスタマーサービス担当者',
+  //   tags: ['正社員', '本社 (東京都千代田区)'],
+  //   image: '/images/pg500/job-02.jpg', // TODO: Replace image
+  //   href: '/careers/customer-service'
+  // },
 ];
 
 const JobListings = () => {

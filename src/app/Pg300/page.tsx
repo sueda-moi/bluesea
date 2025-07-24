@@ -9,7 +9,7 @@ export default function Page300() {
             <PageHeader
                 category="記事一覧"
                 title="ARTICLE"
-                subtitle="BLUESEAの最新情報、プレスリリース、業界インサイトをお届けします。"
+                subtitle="藍海株式会社の最新情報、プレスリリース、業界インサイトをお届けします。"
                 imageUrl="/images/pg300/header-image.jpg"
             />
             <main>

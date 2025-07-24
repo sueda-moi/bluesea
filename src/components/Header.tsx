@@ -22,9 +22,9 @@ const navData: NavLink[] = [
     label: '事業内容',
     path: '/Pg200',
     children: [
-      { label: 'ITソリューション・製品', path: '/Pg201' },
-      { label: '宿泊施設運営・集客支援', path: '/Pg202' },
-      { label: '収益不動産コンサルティング', path: '/Pg203' },
+      { label: '国際貿易・流通支援', path: '/Pg201' },
+      { label: 'ITインフラ・SaaS開発', path: '/Pg202' },
+      { label: '不動産企画・収益化支援', path: '/Pg203' },
     ],
   },
   { label: 'お知らせ', path: '/Pg300' },

@@ -1,0 +1,19 @@
+.section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  /* Key change: align text to the left */
+  text-align: left; 
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  /* The h2 will also be left-aligned due to the parent's style */
+}
+
+.paragraph {
+  line-height: 1.8;
+  color: #374151;
+}

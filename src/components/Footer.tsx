@@ -21,16 +21,16 @@ const Footer = () => {
   const sitemap: LinkGroup[] = [
     {
       title: '事業内容',
-      basePath: '/pg200',
+      basePath: '/Pg200',
       links: [
-        { href: '/Pg201', label: 'ITソリューション・製品' },
-        { href: '/Pg202', label: '宿泊施設運営・集客支援' },
-        { href: '/Pg203', label: '収益不動産コンサルティング' },
+        { href: '/Pg201', label: '国際貿易・流通支援' },
+        { href: '/Pg202', label: 'ITインフラ・SaaS開発' },
+        { href: '/Pg203', label: '不動産企画・収益化支援' },
       ],
     },
     {
       title: '会社情報',
-      basePath: '/pg400',
+      basePath: '/Pg400',
       links: [
         { href: '/Pg400#ceo-message', label: 'CEOメッセージ' },
         { href: '/Pg400#profile', label: '会社概要' },
