@@ -6,9 +6,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { fileName, fileType } = body;
 
-    //  AWS 上创建的、用于生成预签名URL的Lambda函数的URL
-    // TODO: 请将此URL替换为自己的Lambda函数URL
-    const lambdaUrl = 'https://YOUR-UNIQUE-LAMBDA-URL.lambda-url.ap-northeast-1.on.aws/';
+    //   API GatewayREST API url   default/-/blueoceangetuploadurl-
+    const lambdaUrl = 'https://9m051mc4e1.execute-api.ap-northeast-1.amazonaws.com/default/blueoceangetuploadurl';
     
     // 3. 将请求转发给的Lambda函数
     const response = await fetch(lambdaUrl, {

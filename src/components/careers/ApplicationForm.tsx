@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Job } from '@/lib/data/jobs';
 
 type FormProps = {
-  job: Job;
+    job: Job;
 };
 
 
@@ -22,14 +22,35 @@ export default function ApplicationForm({ job }: FormProps) {
     // State for the uploaded file
     const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const MAX_FILE_SIZE_MB = 5;
 
+    const ALLOWED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setResumeFile(e.target.files[0]);
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024; // 转换为字节
+
+            // --- 文件大小前端校验 ---
+            if (file.size > MAX_FILE_SIZE_BYTES) {
+                alert(`ファイルサイズが ${MAX_FILE_SIZE_MB}MB を超えています。`);
+                e.target.value = ''; // 清空文件选择，防止用户提交大文件
+                setResumeFile(null); // 清空文件状态
+                return; // 停止函数执行
+            }
+            // --- 文件类型前端校验 ---
+            if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+                alert(`対応していないファイル形式です。PDF, DOC, DOCXファイルのみアップロード可能です。`); // 日语提示
+                e.target.value = '';
+                setResumeFile(null);
+                return;
+            }
+            setResumeFile(file);
+        } else {
+            setResumeFile(null); // 如果用户取消选择文件，也清空状态
         }
     };
 
@@ -42,6 +63,9 @@ export default function ApplicationForm({ job }: FormProps) {
         setIsSubmitting(true);
 
         try {
+
+            const dataToSendToLambda = { fileName: resumeFile.name, fileType: resumeFile.type };
+            console.log("Sending to Lambda (get-upload-url):", dataToSendToLambda);
             // === 步骤 1 & 2: 请求预签名URL ===
             // TODO: 将 '/api/get-upload-url' 替换为的实际API Gateway端点
             const uploadUrlResponse = await fetch('/api/get-upload-url', {
@@ -49,16 +73,36 @@ export default function ApplicationForm({ job }: FormProps) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fileName: resumeFile.name, fileType: resumeFile.type }),
             });
-            if (!uploadUrlResponse.ok) throw new Error('Failed to get upload URL');
-            const { uploadUrl, fileKey } = await uploadUrlResponse.json(); // 假设API返回上传URL和文件在S3中的key
+            if (!uploadUrlResponse.ok) {
+                const errorData = await uploadUrlResponse.json();
+                throw new Error(`Failed to get upload URL: ${errorData.error || uploadUrlResponse.statusText}`);
+            }
+            // 从后端获取 S3 POST URL 和所需字段
+            const { uploadUrl, fields, fileKey } = await uploadUrlResponse.json();
 
-            // === 步骤 3: 前端直传文件到S3 ===
+            // === 步骤 3: 前端构造FormData并POST文件到S3 ===
+            const formDataForS3 = new FormData();
+            // 必须将所有从后端接收到的fields先添加到FormData中
+            for (const key in fields) {
+                formDataForS3.append(key, fields[key]);
+            }
+            // 最后添加文件本身
+            formDataForS3.append('file', resumeFile); // 'file' 是S3默认期望的文件字段名
             const uploadFileResponse = await fetch(uploadUrl, {
-                method: 'PUT',
-                body: resumeFile,
-                headers: { 'Content-Type': resumeFile.type },
+                method: 'POST', // **注意：这里改为POST方法**
+                body: formDataForS3, // **注意：这里直接发送FormData对象，无需设置Content-Type头**
+                // S3会自动处理Content-Type，因为formDataForS3会设置multipart/form-data
             });
-            if (!uploadFileResponse.ok) throw new Error('Failed to upload file to S3');
+            if (!uploadFileResponse.ok) {
+
+                if (uploadFileResponse.status === 403) {
+                    // 尝试从响应体中获取S3的XML错误信息，进行更精准的错误提示
+                    const s3ErrorText = await uploadFileResponse.text();
+                    console.error("S3 Upload Error Response:", s3ErrorText); // 打印到控制台方便调试
+                    throw new Error(`ファイルのアップロードに失敗しました。詳細: S3がアクセスを拒否しました (Policy Error)。`);
+                }
+                throw new Error(`Failed to upload file to S3: ${uploadFileResponse.statusText}`);
+            }
 
             // === 步骤 4 & 5: 提交文本数据和文件key到另一个API ===
             const applicationData = {
@@ -74,13 +118,17 @@ export default function ApplicationForm({ job }: FormProps) {
                 body: JSON.stringify(applicationData),
             });
 
-            if (!submitApplicationResponse.ok) throw new Error('Failed to submit application data');
+            if (!submitApplicationResponse.ok) {
+                const errorData = await submitApplicationResponse.json();
+                throw new Error(`Failed to submit application data: ${errorData.error || submitApplicationResponse.statusText}`);
+            }
 
             alert(`「${job?.title}」への応募が完了しました。`);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error('Submission failed:', error);
-            alert('応募中にエラーが発生しました。');
+            // 提供更具体的错误信息
+            alert(`応募中にエラーが発生しました。\n詳細: ${error.message || '不明なエラー'}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -122,7 +170,15 @@ export default function ApplicationForm({ job }: FormProps) {
 
                     <div className={styles.formGroup}>
                         <label htmlFor="resume" className={styles.label}>履歴書・職務経歴書 (Resume/CV)</label>
-                        <input type="file" name="resume" id="resume" onChange={handleFileChange} required className={styles.fileInput} accept=".pdf,.doc,.docx" />
+                        <input
+                            type="file"
+                            name="resume"
+                            id="resume"
+                            onChange={handleFileChange}
+                            required
+                            className={styles.fileInput}
+                            accept=".pdf,.doc,.docx"
+                        />
                     </div>
 
                     <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
