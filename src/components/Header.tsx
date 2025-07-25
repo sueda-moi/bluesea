@@ -48,35 +48,21 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
-  //const getMessage = useMessage(); // メッセージ取得関数を使用
-
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-
-  // 为移动端菜单添加新的状态，追踪展开的项
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  // 处理窗口大小的监听
+  const [initialPathname, setInitialPathname] = useState(pathname);
+
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // 768px 是我们的断点
+      setIsMobile(window.innerWidth < 768);
     };
-
-    // 首次加载时检查一次
     checkScreenSize();
-
-    // 添加窗口大小变化监听
     window.addEventListener('resize', checkScreenSize);
-
-    // 组件卸载时移除监听
     return () => window.removeEventListener('resize', checkScreenSize);
-  }, []); // 空依赖数组确保这个 effect 只在挂载和卸载时运行
-  const handleAccordionToggle = (path: string) => {
-    setExpandedItems(prev =>
-      prev.includes(path) ? prev.filter(p => p !== path) : [...prev, path]
-    );
-  };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -84,14 +70,11 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   useEffect(() => {
     if (!isMobile && isMenuOpen) {
       toggleMenu();
     }
   }, [isMobile, isMenuOpen, toggleMenu]);
-
-  const [initialPathname, setInitialPathname] = useState(pathname);
 
   useEffect(() => {
     if (isMobile && isMenuOpen && pathname !== initialPathname) {
@@ -100,14 +83,52 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
     setInitialPathname(pathname);
   }, [pathname, isMobile, isMenuOpen, toggleMenu, initialPathname]);
 
-  // 移动端菜单
   useEffect(() => {
-    // 关闭主菜单时，也重置手风琴的展开状态
     if (!isMenuOpen) {
       setExpandedItems([]);
     }
   }, [isMenuOpen]);
 
+  const handleAccordionToggle = (path: string) => {
+    setExpandedItems(prev =>
+      prev.includes(path) ? prev.filter(p => p !== path) : [...prev, path]
+    );
+  };
+
+  // --- 最终修正的 isParentActive 辅助函数 ---
+  const isParentActive = (item: NavLink, currentPathname: string) => {
+    // 调试：打印当前检查的导航项和当前的 pathname，并去除潜在空格进行测试
+    console.group(`Checking Active State for: ${item.label}`);
+    console.log('Nav Item Path (trimmed):', item.path.trim());
+    console.log('Current Pathname (trimmed):', currentPathname.trim());
+
+    const trimmedItemPath = item.path.trim();
+    const trimmedCurrentPathname = currentPathname.trim();
+
+    let isActive = false;
+
+    if (!item.children) {
+      // 对于没有child菜单的项
+      // 精确匹配，或以路径开头（用于像 /Pg400#anchor 这样 pathname 不含 # 的情况）
+      isActive = trimmedCurrentPathname === trimmedItemPath || 
+                 trimmedCurrentPathname.startsWith(trimmedItemPath + '/');
+      
+      // 特别处理首页 /Pg100 和实际的根路径 /
+      if (trimmedItemPath === '/Pg100' && trimmedCurrentPathname === '/') {
+        isActive = true;
+      }
+      console.log(`  (No children) Is Active: ${isActive}`);
+    } else {
+      // 对于有child菜单的项
+      // 检查当前 pathname 是否以parent项的 path 开头
+      isActive = trimmedCurrentPathname.startsWith(trimmedItemPath);
+      console.log(`  (With children) Is Active (starts-with parent path): ${isActive}`);
+    }
+
+    console.log(`Final Active State for ${item.label}: ${isActive}`);
+    console.groupEnd();
+    return isActive;
+  };
 
   return (
     <>
@@ -117,10 +138,8 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
             <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
           </div>
 
-          {/* 2. デスクトップ用ナビゲーション (PC表示時) */}
           {!isMobile && (
             <div className="header-nav-right">
-              {/* 3. 修改导航栏的渲染逻辑 */}
               <nav>
                 <ul className="nav-menu">
                   {navData.map((item) => (
@@ -130,25 +149,25 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                       onMouseEnter={() => setOpenMenu(item.path)}
                       onMouseLeave={() => setOpenMenu(null)}
                     >
-                      {/* 4. 根据是否有子菜单来渲染不同的元素 */}
                       {item.children ? (
-                        // 如果有子菜单，渲染一个不可点击的 <span>
-                        <span className={`nav-item nav-item-noclick ${pathname.startsWith(item.path) ? 'active' : ''}`}>
+                        <span className={`nav-item nav-item-noclick ${isParentActive(item, pathname) ? 'active' : ''}`}>
                           {item.label}
                         </span>
                       ) : (
-                        // 如果没有子菜单，渲染一个可点击的 <Link>
-                        <Link href={item.path} className={`nav-item ${pathname.startsWith(item.path) ? 'active' : ''}`}>
+                        <Link href={item.path} className={`nav-item ${isParentActive(item, pathname) ? 'active' : ''}`}>
                           {item.label}
                         </Link>
                       )}
 
-                      {/* 下拉菜单的逻辑保持不变 */}
                       {item.children && (
                         <ul className={`dropdown-menu ${openMenu === item.path ? 'open' : ''}`}>
                           {item.children.map((child) => (
                             <li key={child.path} className="dropdown-item">
-                              <Link href={child.path} className="dropdown-link">
+                              {/* child菜单项也应该有自己的活跃状态判断 */}
+                              <Link 
+                                href={child.path} 
+                                className={`dropdown-link ${pathname === child.path || pathname.startsWith(child.path + '#') ? 'active' : ''}`}
+                              >
                                 {child.label}
                               </Link>
                             </li>
@@ -159,17 +178,11 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                   ))}
                 </ul>
               </nav>
-              {/* <LanguageSwitcher scrolled={scrolled} /> */}
-              {/* <Link href={contactPagePath} className="nav-contact-button">
-                {getMessage('common', 'nav_pg600')}
-              </Link> */}
             </div>
           )}
 
           <div className="header-right">
-            {/* 桌面端语言切换器 */}
             {!isMobile && <LanguageSwitcher scrolled={scrolled} />}
-            {/* 手机端菜单切换按钮 */}
             {isMobile && (
               <button className="menu-toggle" onClick={toggleMenu}>
                 {isMenuOpen ? <FiX size={28} /> : <FiAlignJustify size={28} />}
@@ -179,7 +192,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
         </div>
       </header>
 
-      {/* 3. モバイル用ナビゲーション (モバイル表示時) */}
+      {/* 手机端导航 (Mobile Navigation) */}
       {isMobile && isMenuOpen && (
         <div className="mobile-menu-overlay">
           <div className="mobile-menu-content">
@@ -188,18 +201,24 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                 const isExpanded = expandedItems.includes(item.path);
 
                 if (item.children) {
-                  // 有子菜单的项，渲染成可展开的按钮
                   return (
                     <div key={item.path} className="mobile-menu-group">
                       <button className="accordion-toggle" onClick={() => handleAccordionToggle(item.path)}>
-                        <span>{item.label}</span>
+                        {/* 手机端parent级导航项也应该有高亮 */}
+                        <span className={`${isParentActive(item, pathname) ? 'active' : ''}`}>{item.label}</span>
                         {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
                       </button>
                       <div className={`submenu-list ${isExpanded ? 'expanded' : ''}`}>
                         <ul>
                           {item.children.map((child) => (
                             <li key={child.path} className="submenu-item">
-                              <Link href={child.path} className="submenu-link">{child.label}</Link>
+                              {/* 手机端child菜单项高亮 */}
+                              <Link 
+                                href={child.path} 
+                                className={`submenu-link ${pathname === child.path || pathname.startsWith(child.path + '#') ? 'active' : ''}`}
+                              >
+                                {child.label}
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -207,18 +226,17 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                     </div>
                   );
                 } else {
-                  // 没有子菜单的项，渲染成普通链接
                   return (
-                    <Link key={item.path} href={item.path} className="mobile-menu-link">
+                    <Link 
+                      key={item.path} 
+                      href={item.path} 
+                      className={`mobile-menu-link ${isParentActive(item, pathname) ? 'active' : ''}`}
+                    >
                       {item.label}
                     </Link>
                   );
                 }
               })}
-              {/* 联系我们链接 */}
-              {/* <Link href={contactPagePath} className="mobile-menu-link contact">
-               
-              </Link> */}
             </nav>
             <div className="mobile-language-switcher">
               <LanguageSwitcher scrolled={false} />

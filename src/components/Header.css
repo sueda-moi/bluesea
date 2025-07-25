@@ -4,21 +4,25 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px; /* Increased height for more space */
+  height: 80px;
+  /* Increased height for more space */
   background-color: white;
-  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+  border-bottom: 1px solid #e5e7eb;
+  /* Light gray border */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  z-index: 1000; /* Ensure it's on the top layer */
+  z-index: 1000;
+  /* Ensure it's on the top layer */
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .custom-header.scrolled {
   /* A more prominent shadow on scroll */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
 }
 
 .custom-header-inner {
-  max-width: 1280px; /* Max width of the website content */
+  max-width: 1280px;
+  /* Max width of the website content */
   margin: 0 auto;
   height: 100%;
   display: flex;
@@ -37,29 +41,34 @@
 .header-nav-right {
   display: flex;
   align-items: center;
-  gap: 2rem; /* Gap between element groups (nav, lang-switcher, button) */
+  gap: 2rem;
+  /* Gap between element groups (nav, lang-switcher, button) */
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.75rem; /* Gap between navigation links */
+  gap: 1.75rem;
+  /* Gap between navigation links */
 }
 
 .nav-item {
   font-size: 1rem;
   font-weight: 500;
-  color: #374151; /* Dark Gray */
+  color: #374151;
+  /* Dark Gray */
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .nav-item:hover {
-  color: #1d4ed8; /* Blue (Brand Color) */
+  color: #1d4ed8;
+  /* Blue (Brand Color) */
 }
 
 .nav-item.active {
-  color: #1d4ed8; /* Blue (Brand Color) */
+  color: #1d4ed8;
+  /* Blue (Brand Color) */
   font-weight: 600;
 }
 
@@ -84,15 +93,18 @@
 .menu-toggle {
   background: none;
   border: none;
-  color: #1f2937; /* Dark icon color */
+  color: #1f2937;
+  /* Dark icon color */
   cursor: pointer;
-  padding: 0.5rem; /* Increase clickable area */
+  padding: 0.5rem;
+  /* Increase clickable area */
 }
 
 /* === Mobile Fullscreen Menu === */
 .mobile-menu-overlay {
   position: fixed;
-  top: 80px; /* Starts below the Header */
+  top: 80px;
+  /* Starts below the Header */
   left: 0;
   width: 100%;
   height: calc(100vh - 80px);
@@ -119,7 +131,8 @@
 }
 
 .mobile-nav-menu .nav-item {
-  font-size: 1.5rem; /* Larger font size for mobile */
+  font-size: 1.5rem;
+  /* Larger font size for mobile */
 }
 
 .mobile-language-switcher {
@@ -132,7 +145,8 @@
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Adjust gap as needed */
+  gap: 1.5rem;
+  /* Adjust gap as needed */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -141,7 +155,8 @@
 
 /* New container for each nav item to handle positioning */
 .nav-item-container {
-  position: relative; /* This is crucial for positioning the dropdown */
+  position: relative;
+  /* This is crucial for positioning the dropdown */
   height: 100%;
   display: flex;
   align-items: center;
@@ -150,7 +165,8 @@
 /* The dropdown menu itself */
 .dropdown-menu {
   position: absolute;
-  top: 85%; /* Position it below the nav item */
+  top: 85%;
+  /* Position it below the nav item */
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
@@ -197,7 +213,8 @@
 }
 
 .nav-item-noclick {
-  cursor: default; /* Show the default arrow cursor, not the pointer hand */
+  cursor: default;
+  /* Show the default arrow cursor, not the pointer hand */
 }
 
 
@@ -224,6 +241,7 @@
   color: #1f2937;
   border-bottom: 1px solid #e5e7eb;
 }
+
 .mobile-menu-link.contact {
   color: #1d4ed8;
   font-weight: bold;
@@ -251,7 +269,8 @@
 
 /* The container for the sub-menu */
 .submenu-list {
-  background-color: #f9fafb; /* Slightly different background for sub-items */
+  background-color: #f9fafb;
+  /* Slightly different background for sub-items */
   overflow: hidden;
   /* Animation using max-height */
   max-height: 0;
@@ -261,7 +280,7 @@
 /* The state when the accordion is expanded */
 .submenu-list.expanded {
   /* Set a max-height large enough to fit all content */
-  max-height: 500px; 
+  max-height: 500px;
 }
 
 .submenu-list ul {
@@ -276,12 +295,27 @@
 
 .submenu-link {
   display: block;
-  padding: 0.8rem 2rem 0.8rem 3rem; /* Indent sub-items */
+  padding: 0.8rem 2rem 0.8rem 3rem;
+  /* Indent sub-items */
   font-size: 1rem;
   color: #4b5563;
   text-decoration: none;
   border-top: 1px solid #e5e7eb;
 }
+
 .submenu-link:hover {
   background-color: #f0f4f8;
+}
+
+.nav-item.active {
+  color: #1d4ed8 !important; 
+  font-weight: 600;
+}
+.dropdown-link.active {
+  color: #1d4ed8 !important;
+  font-weight: 600;
+}
+.mobile-menu-link.active { 
+  color: #1d4ed8 !important;
+  font-weight: bold; 
 }
