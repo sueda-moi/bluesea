@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import './Footer.css';
+import { useMessage } from '@/lib/useMessage';
 
 type FooterLink = {
   href: string;
@@ -13,37 +14,38 @@ type FooterLink = {
 type LinkGroup = {
   title: string;
   links: FooterLink[];
-  basePath: string; 
+  basePath: string;
 };
 
 const Footer = () => {
+  const getMessage = useMessage();
 
   const sitemap: LinkGroup[] = [
     {
-      title: '事業内容',
+      title: getMessage('common', 'footer_sitemap_services'),
       basePath: '/Pg200',
       links: [
-        { href: '/Pg201', label: '国際貿易・流通支援' },
-        { href: '/Pg202', label: 'ITインフラ・SaaS開発' },
-        { href: '/Pg203', label: '不動産企画・収益化支援' },
+        { href: '/Pg201', label: getMessage('common', 'nav_services_1') },
+        { href: '/Pg202', label: getMessage('common', 'nav_services_2') },
+        { href: '/Pg203', label: getMessage('common', 'nav_services_3') },
       ],
     },
     {
-      title: '会社情報',
+      title: getMessage('common', 'footer_sitemap_about'),
       basePath: '/Pg400',
       links: [
-        { href: '/Pg400#ceo-message', label: 'CEOメッセージ' },
-        { href: '/Pg400#profile', label: '会社概要' },
-        { href: '/Pg400#history', label: '沿革' },
-        { href: '/Pg400#access', label: 'アクセス' },
+        { href: '/Pg400#ceo-message', label: getMessage('common', 'nav_about_1') },
+        { href: '/Pg400#profile', label: getMessage('common', 'nav_about_2') },
+        { href: '/Pg400#history', label: getMessage('common', 'nav_about_3') },
+        { href: '/Pg400#access', label: getMessage('common', 'nav_about_4') },
       ],
     },
   ];
 
   const standaloneLinks: FooterLink[] = [
-    { href: '/Pg300', label: '記事一覧' },
-    { href: '/Pg500', label: '採用情報' },
-    { href: '/Pg600', label: 'お問い合わせ' },
+    { href: '/Pg300', label: getMessage('common', 'footer_sitemap_articles') },
+    { href: '/Pg500', label: getMessage('common', 'nav_careers') },
+    { href: '/Pg600', label: getMessage('common', 'nav_contact') },
   ];
 
   return (
@@ -51,8 +53,8 @@ const Footer = () => {
       <div className="footer-main">
         {/* Left: Logo */}
         <div className="footer-logo">
-          <Link href="/pg100"> 
-            <Image src="/images/logo.png" alt="SOZONEXT Logo" width={200} height={160} />
+          <Link href="/pg100">
+            <Image src="/images/logo.png" alt={getMessage('common', 'alt_logo')} width={200} height={160} />
           </Link>
         </div>
 
@@ -94,10 +96,10 @@ const Footer = () => {
       {/* Bottom: Address and Copyright */}
       <div className="footer-bottom">
         <p className="footer-address">
-          〒100-0005 東京都千代田区丸の内三丁目4番1号 新国際ビル8階
+           {getMessage('common', 'footer_address')}
         </p>
         <p className="footer-copyright">
-          Copyright © 2024 BLUESEA Co.,Ltd.
+           {getMessage('common', 'footer_copyright')}
         </p>
       </div>
     </footer>

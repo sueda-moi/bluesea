@@ -82,15 +82,15 @@
 .language-switcher-container.scrolled .language-switcher-button {
   background-color: transparent;
   border-color: #e5e8eb;
-  color: white;
+  color: black;
 }
 
 .language-switcher-container.scrolled .language-switcher-text {
-  color: white;
+  color: black;
 }
 
 .language-switcher-container.scrolled .language-switcher-svg {
-  color: white;
+  color: black;
 }
 
 @media (max-width: 767px) {

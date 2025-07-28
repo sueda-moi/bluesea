@@ -10,36 +10,24 @@ type NewsItemProps = {
   href: string;
 };
 
-// 2. Update data with news relevant to "Blue Ocean Co., Ltd."
-const dummyNewsData: NewsItemProps[] = [
-  {
-    date: '2024.01.19',
-    category: 'お知らせ',
-    title: '次世代型グローバル企業を目指す「藍海株式会社」設立のお知らせ',
-    href: '/news/Pg301' // Link to the specific news detail page
-  },
-  {
-    date: '2024.04.15',
-    category: 'プレスリリース',
-    title: 'グローバル事業拡大の拠点として、シンガポールオフィスを開設しました。',
-    href: '/news/Pg302'
-  },
-  {
-    date: '2025.06.20', // Use a more recent date
-    category: '事業関連',
-    title: '藍海株式会社、不動産収益化支援サービスを正式にローンチしました。',
-    href: '/Pg203' // Can link directly to the service page we created
-  },
-];
+// 2. New type definition for the component's props
+type NewsSectionProps = {
+  sectionTitle: string;
+  buttonText: string;
+  newsItems: NewsItemProps[];
+};
 
-
-const NewsSection = () => {
+// 3. The component now accepts data via props
+const NewsSection = ({ sectionTitle, buttonText, newsItems }: NewsSectionProps) => {
+  // The hardcoded dummyNewsData array has been removed
   return (
     <section className={styles.newsSection}>
       <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>NEWS</h2>
+        {/* 4. Use the sectionTitle from props */}
+        <h2 className={styles.sectionTitle}>{sectionTitle}</h2>
         <div className={styles.newsList}>
-          {dummyNewsData.map((item) => (
+          {/* 5. Map over the newsItems array from props */}
+          {newsItems.map((item) => (
             <Link href={item.href} key={item.title} className={styles.newsItem}>
               <p className={styles.date}>{item.date}</p>
               <span className={styles.category}>{item.category}</span>
@@ -49,8 +37,9 @@ const NewsSection = () => {
         </div>
         <div className={styles.buttonContainer}>
           {/* This button links to the main news list page (Pg300) */}
-          <Link href="/pg300" className={styles.viewMoreButton}>
-            ニュース一覧へ
+          <Link href="/Pg300" className={styles.viewMoreButton}>
+            {/* 6. Use the buttonText from props */}
+            {buttonText}
           </Link>
         </div>
       </div>

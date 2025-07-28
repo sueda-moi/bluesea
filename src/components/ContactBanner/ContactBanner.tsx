@@ -17,7 +17,7 @@ const ContactBanner = () => {
       <div className={styles.contentBox}>
         <Link href="/Pg600" className={styles.contactLink}>
           <span className={styles.icon}>✉️</span>
-          <span>{getMessage('common', 'nav_pg600')}</span>
+          <span>{getMessage('common', 'nav_contact')}</span>
         </Link>
       </div>
     </section>

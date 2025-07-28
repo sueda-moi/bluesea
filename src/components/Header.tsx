@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiAlignJustify, FiChevronDown, FiChevronUp, FiX } from 'react-icons/fi';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher';
-//import { useMessage } from '@/lib/useMessage';
+import { useMessage } from '@/lib/useMessage';
 import './Header.css';
 
 // 1. 定义新的数据和类型
@@ -16,31 +16,31 @@ type NavLink = {
   children?: NavLink[];
 };
 
-const navData: NavLink[] = [
-  { label: 'TOP', path: '/Pg100' },
-  {
-    label: '事業内容',
-    path: '/Pg200',
-    children: [
-      { label: '国際貿易・流通支援', path: '/Pg201' },
-      { label: 'ITインフラ・SaaS開発', path: '/Pg202' },
-      { label: '不動産企画・収益化支援', path: '/Pg203' },
-    ],
-  },
-  { label: 'お知らせ', path: '/Pg300' },
-  {
-    label: '会社情報',
-    path: '/Pg400',
-    children: [
-      { label: 'CEOメッセージ', path: '/Pg400#ceo-message' },
-      { label: '会社概要', path: '/Pg400#profile' },
-      { label: '沿革', path: '/Pg400#history' },
-      { label: 'アクセス', path: '/Pg400#access' },
-    ],
-  },
-  { label: '採用情報', path: '/Pg500' },
-  { label: 'お問い合わせ', path: '/Pg600' },
-];
+// const navData: NavLink[] = [
+//   { label: 'TOP', path: '/Pg100' },
+//   {
+//     label: '事業内容',
+//     path: '/Pg200',
+//     children: [
+//       { label: '国際貿易・流通支援', path: '/Pg201' },
+//       { label: 'ITインフラ・SaaS開発', path: '/Pg202' },
+//       { label: '不動産企画・収益化支援', path: '/Pg203' },
+//     ],
+//   },
+//   { label: 'お知らせ', path: '/Pg300' },
+//   {
+//     label: '会社情報',
+//     path: '/Pg400',
+//     children: [
+//       { label: 'CEOメッセージ', path: '/Pg400#ceo-message' },
+//       { label: '会社概要', path: '/Pg400#profile' },
+//       { label: '沿革', path: '/Pg400#history' },
+//       { label: 'アクセス', path: '/Pg400#access' },
+//     ],
+//   },
+//   { label: '採用情報', path: '/Pg500' },
+//   { label: 'お問い合わせ', path: '/Pg600' },
+// ];
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -48,6 +48,32 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
+  const getMessage = useMessage();
+  const navData: NavLink[] = [
+    { label: getMessage('common', 'nav_top'), path: '/Pg100' },
+    {
+      label: getMessage('common', 'nav_services'),
+      path: '/Pg200',
+      children: [
+        { label: getMessage('common', 'nav_services_1'), path: '/Pg201' },
+        { label: getMessage('common', 'nav_services_2'), path: '/Pg202' },
+        { label: getMessage('common', 'nav_services_3'), path: '/Pg203' },
+      ],
+    },
+    { label: getMessage('common', 'nav_news'), path: '/Pg300' },
+    {
+      label: getMessage('common', 'nav_about'),
+      path: '/Pg400',
+      children: [
+        { label: getMessage('common', 'nav_about_1'), path: '/Pg400#ceo-message' },
+        { label: getMessage('common', 'nav_about_2'), path: '/Pg400#profile' },
+        { label: getMessage('common', 'nav_about_3'), path: '/Pg400#history' },
+        { label: getMessage('common', 'nav_about_4'), path: '/Pg400#access' },
+      ],
+    },
+    { label: getMessage('common', 'nav_careers'), path: '/Pg500' },
+    { label: getMessage('common', 'nav_contact'), path: '/Pg600' },
+  ];
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
@@ -95,7 +121,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
     );
   };
 
-  // --- 最终修正的 isParentActive 辅助函数 ---
+  // ---  isParentActive 辅助函数 ---
   const isParentActive = (item: NavLink, currentPathname: string) => {
     // 调试：打印当前检查的导航项和当前的 pathname，并去除潜在空格进行测试
     console.group(`Checking Active State for: ${item.label}`);
@@ -135,7 +161,10 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
       <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="custom-header-inner">
           <div className="logo-group">
-            <Image src="/images/logo.png" alt="Logo" width={40} height={40} />
+            <Image src="/images/logo.png" 
+            alt={getMessage('common', 'alt_logo')} 
+            width={40} 
+            height={40} />
           </div>
 
           {!isMobile && (
