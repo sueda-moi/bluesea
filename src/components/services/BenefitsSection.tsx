@@ -13,7 +13,7 @@ type BenefitsSectionProps = {
 
 // 2. 从 props 中解构出需要的数据
 const BenefitsSection = ({ title, imageSrc, imageAlt, benefits }: BenefitsSectionProps) => {
-  // 3. 不再在这里定义 benefitsData，而是直接使用传进来的 benefits prop
+  
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -23,7 +23,7 @@ const BenefitsSection = ({ title, imageSrc, imageAlt, benefits }: BenefitsSectio
         <div className={styles.textWrapper}>
           <h2 className={styles.title}>{title}</h2>
           <ul className={styles.benefitsList}>
-            {benefits.map((benefit, index) => ( // 4. 渲染从 props 接收的 benefits 数组
+            {benefits.map((benefit, index) => ( 
               <li key={index} className={styles.benefitItem}>
                 <FiCheckCircle className={styles.checkIcon} />
                 <span className={styles.benefitText}>{benefit}</span>
