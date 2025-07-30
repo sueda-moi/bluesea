@@ -130,42 +130,73 @@
 /* === ADD THESE NEW STYLES FOR SEARCH FUNCTIONALITY === */
 
 .searchArea {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .searchInput {
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  
-  /* Animation preparation */
-  width: 0;
-  padding-left: 0;
-  padding-right: 0;
-  opacity: 0;
-  transition: all 0.4s ease-in-out;
-  visibility: hidden;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+
+    /* Animation preparation */
+    width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    opacity: 0;
+    transition: all 0.4s ease-in-out;
+    visibility: hidden;
 }
 
 .searchInput.visible {
-  width: 200px; /* Width when visible */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  opacity: 1;
-  visibility: visible;
+    width: 200px;
+    /* Width when visible */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    opacity: 1;
+    visibility: visible;
 }
 
 .searchButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: #6b7280;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
 }
+
+/* Category Tag Styles */
+.categoryTag {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    color: white;
+}
+
+.categoryTag.news {
+    background-color: #6b7280;
+}
+
+/* 灰色 - 通知 */
+.categoryTag.press_release {
+    background-color: #059669;
+}
+
+/* 绿色 - 新闻稿 */
+.categoryTag.business {
+    background-color: #9333ea;
+}
+
+/* 紫色 - 业务 */
+.categoryTag.blog {
+    background-color: #1d4ed8;
+}
+
+/* 蓝色 - 博客 */

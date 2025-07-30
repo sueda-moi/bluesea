@@ -3,14 +3,40 @@ import { useState } from 'react';
 
 import styles from './ApplicationForm.module.css';
 import Link from 'next/link';
-import { Job } from '@/lib/data/jobs';
+import type { Job } from '@/lib/data/jobs';
 
-type FormProps = {
-    job: Job;
+
+type UiText = {
+    headerApplyingFor: string;
+    headerBackLink: string;
+    labelName: string;
+    labelEmail: string;
+    labelPhone: string;
+    labelCoverLetter: string;
+    labelResume: string;
+    buttonApply: string;
+    buttonApplying: string;
+    alertFileSize: string;
+    alertFileType: string;
+    alertFileRequired: string;
+    alertSuccess: string;
+    alertErrorGeneric: string;
+    alertErrorDetails: string;
+    errorUnknown: string;
+    errorGetUrl: string;
+    errorS3Policy: string;
+    errorS3Upload: string;
+    errorSubmitData: string;
 };
 
 
-export default function ApplicationForm({ job }: FormProps) {
+type FormProps = {
+    job: Job;
+    uiText: UiText;
+};
+
+
+export default function ApplicationForm({ job, uiText }: FormProps) {
 
     // State for form fields
     const [formData, setFormData] = useState({
@@ -36,14 +62,14 @@ export default function ApplicationForm({ job }: FormProps) {
 
             // --- 文件大小前端校验 ---
             if (file.size > MAX_FILE_SIZE_BYTES) {
-                alert(`ファイルサイズが ${MAX_FILE_SIZE_MB}MB を超えています。`);
+                alert(uiText.alertFileSize.replace('{size}', MAX_FILE_SIZE_MB.toString()));
                 e.target.value = ''; // 清空文件选择，防止用户提交大文件
                 setResumeFile(null); // 清空文件状态
                 return; // 停止函数执行
             }
             // --- 文件类型前端校验 ---
             if (!ALLOWED_FILE_TYPES.includes(file.type)) {
-                alert(`対応していないファイル形式です。PDF, DOC, DOCXファイルのみアップロード可能です。`); // 日语提示
+                alert(uiText.alertFileType);
                 e.target.value = '';
                 setResumeFile(null);
                 return;
@@ -57,7 +83,7 @@ export default function ApplicationForm({ job }: FormProps) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!resumeFile) {
-            alert('履歴書・職務経歴書をアップロードしてください。');
+            alert(uiText.alertFileRequired);
             return;
         }
         setIsSubmitting(true);
@@ -99,9 +125,9 @@ export default function ApplicationForm({ job }: FormProps) {
                     // 尝试从响应体中获取S3的XML错误信息，进行更精准的错误提示
                     const s3ErrorText = await uploadFileResponse.text();
                     console.error("S3 Upload Error Response:", s3ErrorText); // 打印到控制台方便调试
-                    throw new Error(`ファイルのアップロードに失敗しました。詳細: S3がアクセスを拒否しました (Policy Error)。`);
+                    throw new Error(uiText.errorS3Policy);
                 }
-                throw new Error(`Failed to upload file to S3: ${uploadFileResponse.statusText}`);
+                throw new Error(uiText.errorS3Upload);
             }
 
             // === 步骤 4 & 5: 提交文本数据和文件key到另一个API ===
@@ -120,15 +146,15 @@ export default function ApplicationForm({ job }: FormProps) {
 
             if (!submitApplicationResponse.ok) {
                 const errorData = await submitApplicationResponse.json();
-                throw new Error(`Failed to submit application data: ${errorData.error || submitApplicationResponse.statusText}`);
+                throw new Error(uiText.errorSubmitData);
             }
 
-            alert(`「${job?.title}」への応募が完了しました。`);
+            alert(uiText.alertSuccess.replace('{jobTitle}', job?.title || ''));
 
         } catch (error: any) {
             console.error('Submission failed:', error);
-            // 提供更具体的错误信息
-            alert(`応募中にエラーが発生しました。\n詳細: ${error.message || '不明なエラー'}`);
+            const details = error.message || uiText.errorUnknown;
+            alert(`${uiText.alertErrorGeneric}\n${uiText.alertErrorDetails.replace('{details}', details)}`);
         } finally {
             setIsSubmitting(false);
         }
@@ -142,34 +168,34 @@ export default function ApplicationForm({ job }: FormProps) {
         <main className={styles.pageContainer}>
             <div className={styles.formContainer}>
                 <div className={styles.header}>
-                    <p className={styles.applyingFor}>Applying for:</p>
+                    <p className={styles.applyingFor}>{uiText.headerApplyingFor}</p>
                     <h1 className={styles.jobTitle}>{job.title}</h1>
-                    <Link href={`/careers/${job.slug}`} className={styles.backLink}>← 募集要項に戻る</Link>
+                    <Link href={`/careers/${job.jobId}`} className={styles.backLink}>{uiText.headerBackLink}</Link>
                 </div>
 
                 <form onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="name" className={styles.label}>お名前 (Name)</label>
+                        <label htmlFor="name" className={styles.label}>{uiText.labelName}</label>
                         <input type="text" name="name" id="name" onChange={handleChange} required className={styles.input} />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="email" className={styles.label}>メールアドレス (Email)</label>
+                        <label htmlFor="email" className={styles.label}>{uiText.labelEmail}</label>
                         <input type="email" name="email" id="email" onChange={handleChange} required className={styles.input} />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="phone" className={styles.label}>電話番号 (Phone)</label>
+                        <label htmlFor="phone" className={styles.label}>{uiText.labelPhone}</label>
                         <input type="tel" name="phone" id="phone" onChange={handleChange} className={styles.input} />
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="coverLetter" className={styles.label}>カバーレター (Cover Letter)</label>
+                        <label htmlFor="coverLetter" className={styles.label}>{uiText.labelCoverLetter}</label>
                         <textarea name="coverLetter" id="coverLetter" rows={6} onChange={handleChange} className={styles.textarea}></textarea>
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label htmlFor="resume" className={styles.label}>履歴書・職務経歴書 (Resume/CV)</label>
+                        <label htmlFor="resume" className={styles.label}>{uiText.labelResume}</label>
                         <input
                             type="file"
                             name="resume"
@@ -182,7 +208,7 @@ export default function ApplicationForm({ job }: FormProps) {
                     </div>
 
                     <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
-                        {isSubmitting ? '送信中...' : '応募する'}
+                        {isSubmitting ? uiText.buttonApplying : uiText.buttonApply}
                     </button>
                 </form>
             </div>

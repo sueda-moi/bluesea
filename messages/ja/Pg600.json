@@ -1,26 +1,18 @@
 {
   "page_title": "お問い合わせ",
-  "form_heading": "ご質問・ご相談はこちらからご連絡ください",
-  "access_title": "アクセス",
-  "access_address": "〒103-0004 東京都中央区東日本橋３丁目１０−１４ サンライズ橘ビル７F",
-
-  "form_name_label": "お名前",
-  "form_company_label": "会社名（任意）",
-  "form_phone_label": "電話番号",
-  "form_email_label": "メールアドレス",
-  "form_message_label": "お問い合わせ内容",
-
-  "form_phone_placeholder": "090-xxxx-xxxx",
-  "form_email_placeholder": "example@example.com",
-  "form_company_placeholder": "（例）ネクサステクノロジー株式会社",
-
-  "form_submit_button": "送信する",
-  "form_submitting": "送信中…",
-  "form_success_message": "送信が完了しました。ありがとうございます！",
-
-  "toast_missing_name": "お名前は必須です。",
+  "toast_missing_name": "お名前を入力してください。",
   "toast_missing_contact": "電話番号またはメールアドレスのいずれかを入力してください。",
-  "toast_success": "送信が完了しました！",
-  "toast_fail": "送信に失敗しました。",
-  "toast_error": "送信中にエラーが発生しました。"
+  "toast_success": "お問い合わせありがとうございます。送信されました。",
+  "toast_fail": "送信に失敗しました。後ほどもう一度お試しください。",
+  "toast_error": "エラーが発生しました。しばらくしてから再度お試しください。",
+  "form_name_label": "お名前",
+  "form_company_label": "会社名",
+  "form_phone_label": "電話番号",
+  "form_phone_placeholder": "例：03-1234-5678",
+  "form_email_label": "メールアドレス",
+  "form_email_placeholder": "例：contact@blueocean.co.jp",
+  "form_message_label": "お問い合わせ内容",
+  "form_submitting": "送信中...",
+  "form_submit_button": "送信する",
+  "form_success_message": "お問い合わせを受け付けました。担当者より追ってご連絡いたします。"
 }

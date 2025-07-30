@@ -33,6 +33,7 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 2rem;
+    padding: 1rem;
 }
 
 .timelineDate {
@@ -43,6 +44,7 @@
     color: #1f2937;
     text-align: right;
     padding-right: 2rem;
+    padding-top: 2rem;;
 }
 
 .month {
@@ -76,4 +78,46 @@
     border: 3px solid #1d4ed8;
     /* Brand blue border */
     z-index: 1;
+}
+
+
+/* === ADD THESE STYLES AT THE END FOR RESPONSIVENESS === */
+@media (max-width: 768px) {
+  /* Move the timeline line to the far left on mobile */
+  .timelineContainer::before {
+    left: 8px;
+  }
+
+  .timelineItem {
+    /* Change flex direction to stack elements if needed, or adjust padding */
+    padding-left: 30px; /* Give more space for content */
+    align-items: flex-start;
+    /* Remove padding to use full width */
+    padding-right: 0; 
+    padding-top:0;
+    padding-bottom:0;
+  }
+
+  /* Reposition the dot to match the new line position */
+  .timelineItem::before {
+    left: 0px; /* 8px (line position) - 8px (half of dot width) */
+    top: 8px; /* Adjust vertical alignment */
+  }
+
+  /* Remove fixed width and right alignment from the date */
+  .timelineDate {
+    width: auto;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 0.5rem; /* Add some space between date and content */
+  }
+  
+  /* We need to re-arrange the layout for mobile */
+  .timelineItem {
+    display: block; /* Stop using flexbox for the item itself */
+  }
+
+  .timelineContent {
+    /* The content block is now below the date */
+  }
 }

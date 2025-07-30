@@ -1,56 +1,38 @@
-
-import styles from './JobDetailLayout.module.css'; 
+'use client';
+import type { Job } from '@/lib/data/jobs';
+import styles from './JobDetailLayout.module.css';
 import { FiMapPin, FiDollarSign } from 'react-icons/fi';
 import Link from 'next/link';
-import { Job } from '@/lib/data/jobs';
+import { useMessage } from '@/lib/useMessage';
 
-type LayoutProps = {
-  job: Job;
-};
+import Section from './Section'; 
 
-type SectionProps = {
-  title: string;
-  content: string[];
-  isList?: boolean;
-};
-
-
-const Section = ({ title, content, isList = false }: SectionProps) => (
-    <section className={styles.section}>
-      <h2 className={styles.sectionTitle}>{title}</h2>
-      {isList ? (
-        <ul className={styles.list}>
-          {content.map((item, index) => <li key={index}>{item}</li>)}
-        </ul>
-      ) : (
-        <p className={styles.description}>{content[0]}</p>
-      )}
-    </section>
-  );
-  
-
-export default function JobDetailLayout({ job }: LayoutProps) {
-
+export default function JobDetailLayout({ job }: { job: Job }) {
+  const getMessage = useMessage();
   return (
     <main className={styles.pageContainer}>
       <div className={styles.container}>
         <header className={styles.header}>
           <p className={styles.jobType}>{job.summary.type}</p>
           <h1 className={styles.title}>{job.title}</h1>
-          <p className={styles.companyName}>藍海株式会社</p>
+          <p className={styles.companyName}>
+            {getMessage('Pg500', 'JobDetailLayout-companyName')}
+          </p>
         </header>
         <div className={styles.summary}>
           <div><FiDollarSign /> {job.summary.salary}</div>
           <div><FiMapPin /> {job.summary.location}</div>
         </div>
         <div className={styles.mainContent}>
-          <Section title="仕事内容詳細" content={[job.description]} />
-          <Section title="主な職務内容" content={job.responsibilities} isList />
-          <Section title="応募資格" content={job.qualifications} isList />
-          <Section title="福利厚生" content={job.benefits} isList />
+          <Section title={getMessage('Pg500', 'JobDetailLayout-jobDescription-title')} content={[job.description]} />
+          <Section title={getMessage('Pg500', 'JobDetailLayout-responsibilities-title')} content={job.responsibilities} isList />
+          <Section title={getMessage('Pg500', 'JobDetailLayout-qualifications-title')} content={job.qualifications} isList />
+          <Section title={getMessage('Pg500', 'JobDetailLayout-benefits-title')} content={job.benefits} isList />
         </div>
         <div className={styles.applyButtonWrapper}>
-          <Link href={`/apply?job=${job.slug}`} className={styles.applyButton}>このポジションに応募する</Link>
+          <Link href={`/apply?job=${job.jobId}`} className={styles.applyButton}>
+            {getMessage('Pg500', 'JobDetailLayout-applyButton')}
+          </Link>
         </div>
       </div>
     </main>

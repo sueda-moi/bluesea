@@ -58,3 +58,4 @@ export const useLocaleStore = create<LocaleState>((set) => ({
 }));
 
 export type { MessageFile };
+export type { Locale };

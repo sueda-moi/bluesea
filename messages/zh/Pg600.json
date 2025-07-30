@@ -1,11 +1,18 @@
 {
-    "nav_home": "ホーム",
-  "nav_about": "概要",
-  "nav_services": "事業内容",
-  "nav_contact": "お問い合わせ",
-  "language_toggle": "言語切替",
-  "pg001_title": "私たちはＩＴを通してお客様のビジネスに最大限に貢献します。",
-  "pg001_subtitle": "「人」を大事にし、社員が幸せを感じる会社を目指します。" ,
-  "pg001_button_learn_more": "詳しく見る",
-  "footer_copyright": "ALL RIGHTS RESERVED ©Nexus Technology Co., Ltd."
+  "page_title": "联系我们",
+  "toast_missing_name": "请输入您的姓名。",
+  "toast_missing_contact": "请输入电话号码或电子邮箱。",
+  "toast_success": "感谢您的咨询，信息已发送。",
+  "toast_fail": "发送失败，请稍后重试。",
+  "toast_error": "发生错误，请稍后再试。",
+  "form_name_label": "您的姓名",
+  "form_company_label": "公司名称",
+  "form_phone_label": "电话号码",
+  "form_phone_placeholder": "例如：03-1234-5678",
+  "form_email_label": "电子邮箱",
+  "form_email_placeholder": "例如：contact@blueocean.co.jp",
+  "form_message_label": "咨询内容",
+  "form_submitting": "提交中...",
+  "form_submit_button": "提交",
+  "form_success_message": "我们已收到您的咨询。负责人将稍后与您联系。"
 }

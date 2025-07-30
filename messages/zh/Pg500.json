@@ -1,26 +1,11 @@
 {
-  "page_title": "お問い合わせ",
-  "form_heading": "ご質問・ご相談はこちらからご連絡ください",
-  "access_title": "アクセス",
-  "access_address": "〒103-0004 東京都中央区東日本橋３丁目１０−１４ サンライズ橘ビル７F",
-
-  "form_name_label": "お名前",
-  "form_company_label": "会社名（任意）",
-  "form_phone_label": "電話番号",
-  "form_email_label": "メールアドレス",
-  "form_message_label": "お問い合わせ内容",
-
-  "form_phone_placeholder": "090-xxxx-xxxx",
-  "form_email_placeholder": "example@example.com",
-  "form_company_placeholder": "（例）ネクサステクノロジー株式会社",
-
-  "form_submit_button": "送信する",
-  "form_submitting": "送信中…",
-  "form_success_message": "送信が完了しました。ありがとうございます！",
-
-  "toast_missing_name": "お名前は必須です。",
-  "toast_missing_contact": "電話番号またはメールアドレスのいずれかを入力してください。",
-  "toast_success": "送信が完了しました！",
-  "toast_fail": "送信に失敗しました。",
-  "toast_error": "送信中にエラーが発生しました。"
+  "header_category": "招贤纳士",
+  "header_title": "招贤纳士",
+  "header_subtitle": "与我们一起“想象”未来，并“创造”新的价值，如何？我们期待您的挑战。",
+  "JobDetailLayout-companyName": "蓝海株式会社",
+  "JobDetailLayout-jobDescription-title": "工作内容详情",
+  "JobDetailLayout-responsibilities-title": "主要职责",
+  "JobDetailLayout-qualifications-title": "应聘资格",
+  "JobDetailLayout-benefits-title": "福利待遇",
+  "JobDetailLayout-applyButton": "申请该职位"
 }

@@ -1,162 +1,41 @@
 {
-  "pg004_header_alt": "事業構造図",
-  "pg004_services_title": "主要事業領域",
-  "pg004_services": [
-    {
-      "title": "IT事業",
-      "desc": "金融・保険・公共・社会基盤を中心とした幅広い分野に対応し、業務アプリケーションから基盤構築、クラウド、ネットワーク運用まで総合的に提供いたします。",
-      "fields": [
-        { "type": "subheader", "text": "【業界】" },
-        { "type": "item", "text": "金融：銀行、信託銀行、証券、クレジットカード" },
-        { "type": "item", "text": "保険：生命保険、損害保険、共済系" },
-        { "type": "item", "text": "公共：総合行政業務、福祉、標準化対応、次期DX" },
-        { "type": "item", "text": "基盤：クラウド（AWS・Azure）、サーバ構築、ネットワーク" },
-        { "type": "item", "text": "その他：通信、組込（車載系・IOT）、SAP、Salesforce" },
-        { "type": "subheader", "text": "【システム形態】" },
-        { "type": "item", "text": "オープン系、メインフレーム、Android、iOS" },
-        { "type": "subheader", "text": "【開発技術】" },
-        { "type": "item", "text": "Java、C#、.NET、Typescript、Python、Cobol、C/C++" },
-        { "type": "item", "text": "Intra-mart、RPA、アビニシオ" },
-        { "type": "item", "text": "AWS/Azure、Unix/Linux、Windows、汎用機環境構築、ネットワーク構築" }
-      ]
-    },
-    {
-      "title": "不動産事業",
-      "desc": "IT事業を主力としながらも、不動産分野の成長も視野に入れ、売買・建築・賃貸など幅広く展開しています。",
-      "fields": [
-        { "type": "item", "text": "土地／マンション売買" },
-        { "type": "item", "text": "建築／分譲" },
-        { "type": "item", "text": "店舗等投資物件賃貸" }
-      ]
-    },
-    {
-      "title": "主要開発実績",
-      "desc": "以下は当社が過去に取り組んできた主要な分野です。",
-      "fields": [
-        { "type": "item", "text": "業務アプリケーション開発：金融（銀行・クレジットカード・証券）、保険、生保損保基幹システム開発" },
-        { "type": "item", "text": "公共DX：自治体向け公共システム・生成AI活用の自治体DX支援" },
-        { "type": "item", "text": "組込系：車載Audio、自動運転制御・検証" },
-        { "type": "item", "text": "通信：通信機器関連開発・検証" },
-        { "type": "item", "text": "クラウド環境を利用したインフラ構築・開発（AWS / Azure）" },
-        { "type": "item", "text": "オンプレミス型基盤構築・運用保守" },
-        { "type": "item", "text": "SmartCity関連" },
-        { "type": "item", "text": "交通、食品安全、教育Cloudサービス" },
-        { "type": "item", "text": "電子マネー・モバイル決済・インターネット決済" },
-        { "type": "item", "text": "日経企業中国現地ビジネスのサポート" }
-      ]
-    }
-  ],
-
-  "pg004_fields_labels": {
-    "project_name": "案件名",
-    "role": "担当",
-    "phase": "工程",
-    "tech_stack": "開発技術・環境"
-  },
-  "pg004_business_fields_title": "主要事業実績",
-  "pg004_business_fields": [
-    {
-      "category": "金融系システム",
-      "projects": [
-        {
-          "title": "インターネットバンキング基盤構築",
-          "responsibility": "AWS環境構築（EC2, S3, EBS, VPC）",
-          "phase": "要件定義～リリース・保守",
-          "technology": "AWS CLI、Shell、JP1"
-        },
-        {
-          "title": "地銀共同センター：預金・為替・融資業務",
-          "responsibility": "詳細設計～結合・総合テスト、保守対応",
-          "phase": "開発～保守",
-          "technology": "COBOL、JCL、TSO、DB2、CICS"
-        },
-        {
-          "title": "金融業務の勘定系／周辺系システム開発",
-          "responsibility": "要件分析、設計、開発、試験、導入",
-          "phase": "上流～下流一貫対応",
-          "technology": "Java、Spring、Oracle、Unix"
-        }
-      ]
-    },
-    {
-      "category": "保険系システム",
-      "projects": [
-        {
-          "title": "生命保険：新契約システム刷新",
-          "responsibility": "設計、開発、試験、移行支援",
-          "phase": "基本設計～保守",
-          "technology": "Java、Spring、MyBatis、PostgreSQL"
-        },
-        {
-          "title": "損害保険：契約管理・支援システム",
-          "responsibility": "業務設計、システム保守",
-          "phase": "設計～保守",
-          "technology": "C#、.NET、Oracle"
-        },
-        {
-          "title": "保険契約管理および請求処理",
-          "responsibility": "開発、試験、運用サポート",
-          "phase": "実装～リリース",
-          "technology": "VB.NET、SQL Server、Windows Server"
-        }
-      ]
-    },
-    {
-      "category": "社会基盤系システム",
-      "projects": [
-        {
-          "title": "自治体DX：スマートシティWebポータル",
-          "responsibility": "フロントエンド／バックエンド開発、AIチャットボット連携",
-          "phase": "アジャイル開発",
-          "technology": "Vue.js、Node.js、Python、AWS"
-        },
-        {
-          "title": "公共交通：チケッティングプラットフォーム",
-          "responsibility": "システム設計、決済ゲートウェイ連携",
-          "phase": "要件定義～納品",
-          "technology": "Java、Spring Boot、PostgreSQL、Docker"
-        },
-        {
-          "title": "医療：クラウド型管理システム",
-          "responsibility": "クラウドインフラ構築、フルスタック実装",
-          "phase": "設計～運用",
-          "technology": "React、NestJS、GCP、Kubernetes"
-        }
-      ]
-    }
-  ],
-  "pg004_clients_title": "主要取引先一覧",
-  "pg004_clients_alt": "主要な取引企業一覧図",
-  "geo-map-section": "グローバルな視点",
-  "pg004_3year_plan_title": "最近3年間の運営実績",
-  "pg004_3year_plan_details": [
-    [
-      "IT事業：業務SEサービス提供（金融、クレジット等）",
-      "不動産事業：Smart City関連、不動産建設、売買、投資物件賃貸"
-    ],
-    [
-      "IT事業：業務SEサービス（金融、クレジット、産業、AWS等）",
-      "不動産事業：Smart City関連、不動産建設、売買、投資物件賃貸",
-      "その他：飲食関連事業"
-    ],
-    [
-      "IT事業：業務SEサービス（金融、クレジット、産業、AWS等）",
-      "不動産事業：Smart City関連、不動産建設、売買、投資物件賃貸",
-      "その他：飲食関連事業"
-    ]
-  ],
-  "pg004_view_details": "詳細を見る",
-  "pg004_hide_details": "詳細を隠す",
-  "pg004_chart_tabs": {
-    "revenue": "売上推移（3年間）",
-    "workforce": "社員・委託先構成の推移"
-  },
-  "pg004_chart_revenue_title": "売上推移（3年間）",
-  "pg004_chart_workforce_title": "社員・委託先構成の推移",
-  "pg004_chart_axis_revenue_unit": "億円",
-  "pg004_chart_axis_workforce_unit": "名",
-  "pg004_chart_legend_employees": "社員",
-  "pg004_chart_legend_contractors": "委託先",
-  "pg004_chart_section_title_suffix": "の事業内容",
-  "pg004_chart_estimated_suffix": "（推定）"
+  "header_category": "会社情報",
+  "header_title": "ABOUT US",
+  "header_subtitle": "藍海株式会社の理念、歩み、そして未来についてご紹介します。",
+  "nav_ceo": "CEOメッセージ",
+  "nav_profile": "会社概要",
+  "nav_history": "沿革",
+  "nav_access": "アクセス",
+  "ceo_title": "未来を「想像」し、新しい価値を「創造」する",
+  "ceo_p1": "急速にグローバル化が進む現代において、従来の枠組みにとらわれない新しいビジネスモデルの創出が求められています。藍海株式会社は、不動産投資における「ブルーオーシャン戦略」の実践を通じて、競争の激しい市場においても独自の価値を提供し続けています。私たちは単なる不動産サービスの提供者ではなく、お客様の資産価値最大化のパートナーとして、革新的なソリューションを追求しています。",
+  "ceo_p2": "シンガポールオフィスの開設により、アジア太平洋地域での事業展開を本格化し、国境を越えたビジネス機会の創出に取り組んでいます。海外進出を検討される企業様には、複雑な手続きや文化的な違いを乗り越えるための実践的なサポートを提供いたします。私たちと共に、グローバルな視野で新たな価値創造の旅を始めませんか。",
+  "ceo_signature": "代表取締役　許 海 南（Xu Hainan）",
+  "profile_title": "会社概要",
+  "profile_name_label": "会社名（商号）",
+  "profile_name_value": "藍海株式会社（Blue Ocean Co., Ltd.）",
+  "profile_corp_num_label": "法人番号",
+  "profile_corp_num_value": "0100-01-241688",
+  "profile_date_label": "設立日",
+  "profile_date_value": "令和6年1月19日（2024年1月19日）",
+  "profile_capital_label": "資本金",
+  "profile_capital_value": "5,000万円",
+  "profile_rep_label": "代表者",
+  "profile_rep_value": "代表取締役　許 海 南（Xu Hainan）",
+  "profile_address_label": "本社所在地",
+  "profile_address_value": "東京都千代田区丸の内三丁目4番1号 新国際ビル8階",
+  "profile_overseas_label": "海外拠点",
+  "profile_overseas_value": "シンガポール（Ardmore Park 1A-19-01）",
+  "profile_services_label": "事業内容",
+  "profile_services_value": "①国際貿易 ②電子機器・ITインフラ ③情報処理・SaaS開発 ④飲食/観光/宿泊施設運営 ⑤不動産企画・収益化支援 ⑥その他附帯業務",
+  "profile_contact_label": "連絡先",
+  "profile_contact_value": "Email：info@blueocean.co.jp",
+  "history_title": "沿革",
+  "history_event_1_desc": "藍海株式会社（Blue Ocean Co., Ltd.）設立",
+  "history_event_2_desc": "シンガポールオフィス開設",
+  "access_title": "アクセス",
+  "access_company_name": "藍海株式会社 (Blue Ocean Co., Ltd.)",
+  "access_postal_code": "〒100-0005",
+  "access_address": "東京都千代田区丸の内三丁目4番1号 新国際ビル8階",
+  "access_tel": "TEL: 03-XXXX-XXXX",
+  "access_map_button": "Googleマップで見る"
 }
