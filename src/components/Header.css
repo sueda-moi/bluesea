@@ -319,3 +319,21 @@
   color: #1d4ed8 !important;
   font-weight: bold; 
 }
+
+/* === Mobile Accordion Active Styles === */
+
+/* 1. 手机端“父级菜单”标题高亮样式 (例如 '事业内容') */
+/* This targets the <span> inside the accordion button. */
+.accordion-toggle span.active {
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* 2. 手机端“子菜单”链接高亮样式 (例如 '服务内容1') */
+/* This targets the <a> link in the dropdown sub-menu. */
+.submenu-link.active {
+  color: #1d4ed8;
+  font-weight: 600;
+  /* Optional: Add a subtle background color to make it stand out even more */
+  background-color: #eef2ff; 
+}
