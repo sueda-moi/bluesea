@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 2rem;
+  background-color: #f9fafb;
+}
+
+.card {
+  background-color: white;
+  padding: 4rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  border: 1px solid #e5e7eb;
+}
+
+.icon {
+  color: #10b981; /* Green color for success */
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.message {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.homeButton {
+  display: inline-block;
+  background-color: #1d4ed8;
+  color: white;
+  padding: 0.75rem 2.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.homeButton:hover {
+  background-color: #1e40af;
+}

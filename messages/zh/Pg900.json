@@ -20,5 +20,9 @@
   "apply_error_get_url": "获取上传链接失败。",
   "apply_error_s3_policy": "文件上传失败。详情：S3服务器拒绝访问（策略错误）。",
   "apply_error_s3_upload": "上传文件至S3失败。",
-  "apply_error_submit_data": "提交申请数据失败。"
+  "apply_error_submit_data": "提交申请数据失败。",
+   "//--- Application Success Page Text ---": "",
+  "success_page_title": "感谢您的申请",
+  "success_page_message": "我们已经收到了您的申请。在审查您的资料后，负责人将很快与您联系。",
+  "success_page_button": "返回首页"
 }

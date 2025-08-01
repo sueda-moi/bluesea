@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './ApplicationForm.module.css';
 import Link from 'next/link';
 import type { Job } from '@/lib/data/jobs';
+import { useRouter } from 'next/navigation';
 
 
 type UiText = {
@@ -38,6 +39,7 @@ type FormProps = {
 
 export default function ApplicationForm({ job, uiText }: FormProps) {
 
+    const router = useRouter();
     // State for form fields
     const [formData, setFormData] = useState({
         name: '',
@@ -149,7 +151,8 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
                 throw new Error(uiText.errorSubmitData);
             }
 
-            alert(uiText.alertSuccess.replace('{jobTitle}', job?.title || ''));
+            // alert(uiText.alertSuccess.replace('{jobTitle}', job?.title || ''));
+            router.push('/apply/success');
 
         } catch (error: any) {
             console.error('Submission failed:', error);

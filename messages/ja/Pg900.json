@@ -20,5 +20,8 @@
   "apply_error_get_url": "アップロードURLの取得に失敗しました。",
   "apply_error_s3_policy": "ファイルのアップロードに失敗しました。詳細: S3がアクセスを拒否しました (Policy Error)。",
   "apply_error_s3_upload": "S3へのファイルアップロードに失敗しました。",
-  "apply_error_submit_data": "応募データの送信に失敗しました。"
+  "apply_error_submit_data": "応募データの送信に失敗しました。",
+  "success_page_title":"ご応募ありがとうございます",
+  "success_page_message":"応募内容を受け付けました。書類選考の上、担当者より追ってご連絡いたします。",
+  "success_page_button":"トップページへ戻る"
 }

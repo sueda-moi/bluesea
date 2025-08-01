@@ -20,5 +20,9 @@
   "apply_error_get_url": "Failed to get upload URL.",
   "apply_error_s3_policy": "File upload failed. Details: S3 denied access (Policy Error).",
   "apply_error_s3_upload": "Failed to upload file to S3.",
-  "apply_error_submit_data": "Failed to submit application data."
+  "apply_error_submit_data": "Failed to submit application data.",
+  "//--- Application Success Page Text ---": "",
+  "success_page_title": "Thank You for Applying",
+  "success_page_message": "We have received your application. We will review your documents and contact you shortly.",
+  "success_page_button": "Return to Homepage"
 }
