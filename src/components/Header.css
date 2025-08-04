@@ -6,7 +6,7 @@
   width: 100%;
   height: 80px;
   /* Increased height for more space */
-  background-color: white;
+  background-color: rgb(150, 211, 247);
   border-bottom: 1px solid #e5e7eb;
   /* Light gray border */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);

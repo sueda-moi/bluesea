@@ -60,16 +60,16 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024; // 转换为字节
+            const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024; // tansform to byte
 
-            // --- 文件大小前端校验 ---
+            // --- front end validation for file size ---
             if (file.size > MAX_FILE_SIZE_BYTES) {
                 alert(uiText.alertFileSize.replace('{size}', MAX_FILE_SIZE_MB.toString()));
-                e.target.value = ''; // 清空文件选择，防止用户提交大文件
-                setResumeFile(null); // 清空文件状态
-                return; // 停止函数执行
+                e.target.value = ''; // clear the file selection to prevent submission of an oversized file
+                setResumeFile(null); // clear the state of file
+                return; // Stop execution and return
             }
-            // --- 文件类型前端校验 ---
+            // ---  front end validation for file type ---
             if (!ALLOWED_FILE_TYPES.includes(file.type)) {
                 alert(uiText.alertFileType);
                 e.target.value = '';
@@ -78,7 +78,7 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
             }
             setResumeFile(file);
         } else {
-            setResumeFile(null); // 如果用户取消选择文件，也清空状态
+            setResumeFile(null); // clear state if the user cancels the selection
         }
     };
 
@@ -94,8 +94,8 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
 
             const dataToSendToLambda = { fileName: resumeFile.name, fileType: resumeFile.type };
             console.log("Sending to Lambda (get-upload-url):", dataToSendToLambda);
-            // === 步骤 1 & 2: 请求预签名URL ===
-            // TODO: 将 '/api/get-upload-url' 替换为的实际API Gateway端点
+            // === step 1 & 2 : request a Pre-signed URL ===
+            // put '/api/get-upload-url' replace with the actual API Gatewat endpoint
             const uploadUrlResponse = await fetch('/api/get-upload-url', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -105,26 +105,26 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
                 const errorData = await uploadUrlResponse.json();
                 throw new Error(`Failed to get upload URL: ${errorData.error || uploadUrlResponse.statusText}`);
             }
-            // 从后端获取 S3 POST URL 和所需字段
+            // Fetch the pre-signed S3 POST URL and required fields from the backend.
             const { uploadUrl, fields, fileKey } = await uploadUrlResponse.json();
 
-            // === 步骤 3: 前端构造FormData并POST文件到S3 ===
+            // === step 3: build the formDate and Post the file to S3 on the client side ===
             const formDataForS3 = new FormData();
-            // 必须将所有从后端接收到的fields先添加到FormData中
+            
             for (const key in fields) {
                 formDataForS3.append(key, fields[key]);
             }
-            // 最后添加文件本身
+            
             formDataForS3.append('file', resumeFile); // 'file' 是S3默认期望的文件字段名
             const uploadFileResponse = await fetch(uploadUrl, {
-                method: 'POST', // **注意：这里改为POST方法**
-                body: formDataForS3, // **注意：这里直接发送FormData对象，无需设置Content-Type头**
+                method: 'POST', 
+                body: formDataForS3, 
                 // S3会自动处理Content-Type，因为formDataForS3会设置multipart/form-data
             });
             if (!uploadFileResponse.ok) {
 
                 if (uploadFileResponse.status === 403) {
-                    // 尝试从响应体中获取S3的XML错误信息，进行更精准的错误提示
+                    
                     const s3ErrorText = await uploadFileResponse.text();
                     console.error("S3 Upload Error Response:", s3ErrorText); // 打印到控制台方便调试
                     throw new Error(uiText.errorS3Policy);
@@ -139,7 +139,7 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
                 resumeFileKey: fileKey, // 将文件在S3的唯一标识符发给后端
             };
 
-            // TODO: 将 '/api/submit-application' 替换为的实际API Gateway端点
+            //  '/api/submit-application' replace with the actual API Gatewat endpoint
             const submitApplicationResponse = await fetch('/api/submit-application', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -148,7 +148,8 @@ export default function ApplicationForm({ job, uiText }: FormProps) {
 
             if (!submitApplicationResponse.ok) {
                 const errorData = await submitApplicationResponse.json();
-                throw new Error(uiText.errorSubmitData);
+                const detailedErrorMessage = errorData?.message || uiText.errorSubmitData;
+                throw new Error(detailedErrorMessage);
             }
 
             // alert(uiText.alertSuccess.replace('{jobTitle}', job?.title || ''));

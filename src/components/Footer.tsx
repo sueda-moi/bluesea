@@ -1,7 +1,7 @@
 // components/Footer.tsx
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+// import Image from 'next/image';
+// import Link from 'next/link';
 import './Footer.css';
 import { useMessage } from '@/lib/useMessage';
 
@@ -50,19 +50,19 @@ const Footer = () => {
 
   return (
     <footer className="footer-container">
-      <div className="footer-main">
+      {/* <div className="footer-main"> */}
         {/* Left: Logo */}
-        <div className="footer-logo">
+        {/* <div className="footer-logo">
           <Link href="/pg100">
             <Image src="/images/logo.png" alt={getMessage('common', 'alt_logo')} width={200} height={160} />
           </Link>
-        </div>
+        </div> */}
 
         {/* Middle: Sitemap */}
-        <div className="footer-sitemap">
+        {/* <div className="footer-sitemap">
           {sitemap.map((group) => (
             <div key={group.title} className="link-group">
-              {/* 标题本身也可以是一个链接，指向该分类的概览页 */}
+              
               <Link href={group.basePath} className="link-group-title">
                 {group.title}
               </Link>
@@ -77,10 +77,10 @@ const Footer = () => {
               </ul>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Right: Standalone Links */}
-        <div className="footer-standalone-links">
+        {/* <div className="footer-standalone-links">
           <ul className="link-list">
             {standaloneLinks.map((link) => (
               <li key={link.href}>
@@ -90,8 +90,8 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
+        </div>*/}
+      {/* </div>  */}
 
       {/* Bottom: Address and Copyright */}
       <div className="footer-bottom">
