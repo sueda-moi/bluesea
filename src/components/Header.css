@@ -6,10 +6,10 @@
   width: 100%;
   height: 80px;
   /* Increased height for more space */
-  background-color: rgb(150, 211, 247);
-  border-bottom: 1px solid #e5e7eb;
+  background-color: rgba(3, 127, 199, 0.139);
+  border-bottom: 1px solid #0156ff7b;
   /* Light gray border */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(1, 30, 253, 0.616);
   z-index: 1000;
   /* Ensure it's on the top layer */
   transition: box-shadow 0.3s ease-in-out;
@@ -17,7 +17,7 @@
 
 .custom-header.scrolled {
   /* A more prominent shadow on scroll */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(1, 30, 253, 0.616), 0 2px 4px -2px rgba(1, 30, 253, 0.616)
 }
 
 .custom-header-inner {

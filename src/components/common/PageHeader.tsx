@@ -19,7 +19,14 @@ const PageHeader = ({ category, title, subtitle, imageUrl }: PageHeaderProps) =>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
         <div className={styles.imageWrapper}>
-          <Image src={imageUrl} alt={title} width={600} height={400} className={styles.image} priority />
+          <Image
+            src={imageUrl} 
+            alt={title} 
+            fill 
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className={styles.image} 
+            priority 
+          />
         </div>
       </div>
     </section>

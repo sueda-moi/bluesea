@@ -250,13 +250,13 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
   //     )}
   //   </>
   // );
-  // 从这里开始替换你的代码
+ 
   return (
     <>
       <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
         <div className="custom-header-inner">
           <div className="logo-group">
-            <Image src="/images/logo.png"
+            <Image src="/images/logo-removebg-preview.png"
               alt={getMessage('common', 'alt_logo')}
               width={40}
               height={40} />
@@ -266,7 +266,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
             <div className="header-nav-right">
               <nav>
                 <ul className="nav-menu">
-                  {/* --- 这里是修正过的桌面端导航 --- */}
+                  
                   {navData.map((item) => {
 
                     // if (item.path === '/Pg200') {
@@ -282,7 +282,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                     //   console.log('Item Path Char Codes:', itemPathCodes);
                     // }
 
-                    // 3. 加上了 return 关键字
+
                     return (
                       <li
                         key={item.path}
@@ -385,7 +385,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
       )}
     </>
   );
-  // 到这里结束替换
+ 
 };
 
 export default Header;
