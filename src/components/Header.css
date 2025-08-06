@@ -7,17 +7,22 @@
   height: 80px;
   /* Increased height for more space */
   background-color: rgba(3, 127, 199, 0.139);
-  border-bottom: 1px solid #0156ff7b;
+  border-bottom: 1px solid  rgba(3, 127, 199, 0.139);
   /* Light gray border */
-  box-shadow: 0 1px 3px rgba(1, 30, 253, 0.616);
+  box-shadow: 0 1px 3px  rgba(3, 127, 199, 0.139);
   z-index: 1000;
   /* Ensure it's on the top layer */
   transition: box-shadow 0.3s ease-in-out;
+  
 }
 
 .custom-header.scrolled {
   /* A more prominent shadow on scroll */
-  box-shadow: 0 4px 6px -1px rgba(1, 30, 253, 0.616), 0 2px 4px -2px rgba(1, 30, 253, 0.616)
+  box-shadow: 0 4px 6px -1px rgba(3, 127, 199, 0.139), 0 2px 4px -2px  rgba(3, 127, 199, 0.139);
+  background-image: url('/images/head-background.jpg');
+  background-color: rgba(33, 147, 176, 0.4);
+  background-position:center top;
+  background-size:cover;
 }
 
 .custom-header-inner {
