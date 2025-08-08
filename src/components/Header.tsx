@@ -57,6 +57,17 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
   const [initialPathname, setInitialPathname] = useState(pathname);
 
   useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]); 
+
+  useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -130,126 +141,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
     return currentPathname === item.path;
   };
 
-  // return (
-  //   <>
-  //     <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
-  //       <div className="custom-header-inner">
-  //         <div className="logo-group">
-  //           <Image src="/images/logo.png"
-  //             alt={getMessage('common', 'alt_logo')}
-  //             width={40}
-  //             height={40} />
-  //         </div>
 
-  //         {!isMobile && (
-  //           <div className="header-nav-right">
-  //             <nav>
-  //               <ul className="nav-menu">
-  //                 {navData.map((item) => (
-  //                   <li
-  //                     key={item.path}
-  //                     className="nav-item-container"
-  //                     onMouseEnter={() => setOpenMenu(item.path)}
-  //                     onMouseLeave={() => setOpenMenu(null)}
-  //                   >
-  //                     {item.children ? (
-  //                       <span className={`nav-item nav-item-noclick ${isParentActive(item, pathname) ? 'active' : ''}`}>
-  //                         {item.label}
-  //                       </span>
-  //                     ) : (
-  //                       <Link href={item.path} className={`nav-item ${isParentActive(item, pathname) ? 'active' : ''}`}>
-  //                         {item.label}
-  //                       </Link>
-  //                     )}
-
-  //                     {item.children && (
-  //                       <ul className={`dropdown-menu ${openMenu === item.path ? 'open' : ''}`}>
-  //                         {item.children.map((child) => (
-  //                           <li key={child.path} className="dropdown-item">
-  //                             {/* child菜单项也应该有自己的活跃状态判断 */}
-  //                             <Link
-  //                               href={child.path}
-  //                               className={`dropdown-link ${pathname === child.path || pathname.startsWith(child.path + '#') ? 'active' : ''}`}
-  //                             >
-  //                               {child.label}
-  //                             </Link>
-  //                           </li>
-  //                         ))}
-  //                       </ul>
-  //                     )}
-  //                   </li>
-  //                 ))}
-  //               </ul>
-  //             </nav>
-  //           </div>
-  //         )}
-
-  //         <div className="header-right">
-  //           {!isMobile && <LanguageSwitcher scrolled={scrolled} />}
-  //           {isMobile && (
-  //             <button className="menu-toggle" onClick={toggleMenu}>
-  //               {isMenuOpen ? <FiX size={28} /> : <FiAlignJustify size={28} />}
-  //             </button>
-  //           )}
-  //         </div>
-  //       </div>
-  //     </header>
-
-  //     {/* 手机端导航 (Mobile Navigation) */}
-  //     {isMobile && isMenuOpen && (
-  //       <div className="mobile-menu-overlay">
-  //         <div className="mobile-menu-content">
-  //           <nav className="mobile-nav-menu">
-  //             {navData.map((item) => {
-
-  //               const isExpanded = expandedItems.includes(item.path);
-
-  //               if (item.children) {
-  //                 return (
-  //                   <div key={item.path} className="mobile-menu-group">
-  //                     <button className="accordion-toggle" onClick={() => handleAccordionToggle(item.path)}>
-  //                       {/* 手机端parent级导航项也应该有高亮 */}
-  //                       <span className={`${isParentActive(item, pathname) ? 'active' : ''}`}>{item.label}</span>
-  //                       {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
-  //                     </button>
-  //                     <div className={`submenu-list ${isExpanded ? 'expanded' : ''}`}>
-  //                       <ul>
-  //                         {item.children.map((child) => (
-  //                           <li key={child.path} className="submenu-item">
-  //                             {/* 手机端child菜单项高亮 */}
-  //                             <Link
-  //                               href={child.path}
-  //                               className={`submenu-link ${pathname === child.path || pathname.startsWith(child.path + '#') ? 'active' : ''}`}
-  //                             >
-  //                               {child.label}
-  //                             </Link>
-  //                           </li>
-  //                         ))}
-  //                       </ul>
-  //                     </div>
-  //                   </div>
-  //                 );
-  //               } else {
-  //                 return (
-  //                   <Link
-  //                     key={item.path}
-  //                     href={item.path}
-  //                     className={`mobile-menu-link ${isParentActive(item, pathname) ? 'active' : ''}`}
-  //                   >
-  //                     {item.label}
-  //                   </Link>
-  //                 );
-  //               }
-  //             })}
-  //           </nav>
-  //           <div className="mobile-language-switcher">
-  //             <LanguageSwitcher scrolled={false} />
-  //           </div>
-  //         </div>
-  //       </div>
-  //     )}
-  //   </>
-  // );
  
   return (
     <>
