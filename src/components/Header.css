@@ -10,7 +10,7 @@
   border-bottom: 1px solid  rgba(3, 127, 199, 0.139);
   /* Light gray border */
   box-shadow: 0 1px 3px  rgba(3, 127, 199, 0.139);
-  z-index: 1000;
+  z-index: 700;
   /* Ensure it's on the top layer */
   transition: box-shadow 0.3s ease-in-out;
   
@@ -108,11 +108,11 @@
 /* === Mobile Fullscreen Menu === */
 .mobile-menu-overlay {
   position: fixed;
-  top: 80px;
+  top: 0;
   /* Starts below the Header */
   left: 0;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 100vh;
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(4px);
   z-index: 999;
@@ -236,7 +236,6 @@
 /* Style for a normal link item */
 .mobile-menu-link {
   display: block;
-  width: 100%;
   padding: 1rem 2rem;
   font-size: 1.25rem;
   text-align: center;
@@ -339,4 +338,10 @@
   font-weight: 600;
   /* Optional: Add a subtle background color to make it stand out even more */
   background-color: #eef2ff; 
+}
+
+.nav-item-container:nth-last-child(-n+2) .dropdown-menu {
+  left: auto; 
+  right: 0;   
+  transform: none; 
 }

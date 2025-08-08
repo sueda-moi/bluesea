@@ -1,6 +1,6 @@
 // components/Header.tsx
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -56,16 +56,27 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const [initialPathname, setInitialPathname] = useState(pathname);
 
+  const scrollPosition = useRef(0);
+
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      // 1. store srollY
+      scrollPosition.current = window.scrollY;
+
+      // 2. frozen body
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollPosition.current}px`;
+      document.body.style.paddingRight = '0px';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.body.style.paddingRight = '';
+
+      window.scrollTo(0, scrollPosition.current);
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isMenuOpen]); 
+  }, [isMenuOpen]);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -142,7 +153,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
   };
 
 
- 
+
   return (
     <>
       <header className={`custom-header ${scrolled ? 'scrolled' : ''}`}>
@@ -158,7 +169,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
             <div className="header-nav-right">
               <nav>
                 <ul className="nav-menu">
-                  
+
                   {navData.map((item) => {
 
                     // if (item.path === '/Pg200') {
@@ -246,7 +257,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
                             <li key={child.path} className="submenu-item">
                               <Link
                                 href={child.path}
-                                 className={`submenu-link ${pathname === child.path.split('#')[0] ? 'active' : ''}`}
+                                className={`submenu-link ${pathname === child.path.split('#')[0] ? 'active' : ''}`}
                               >
                                 {child.label}
                               </Link>
@@ -277,7 +288,7 @@ const Header: React.FC<HeaderProps> = ({ isMenuOpen, toggleMenu }) => {
       )}
     </>
   );
- 
+
 };
 
 export default Header;
